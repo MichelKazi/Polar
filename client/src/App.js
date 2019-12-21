@@ -1,29 +1,29 @@
-import React, { Fragment } from 'react';
-import {
-  CssBaseline,
-  withStyles,
-} from '@material-ui/core';
+import React, { useState, useEffect} from 'react';
 
-import AppHeader from './components/AppHeader';
-import Home from './pages/Home';
+function App() {
+	const getRes = async () =>{
+		const res = await fetch('/api/hello')
+		const body = await res.json()
+		if (res.status !== 200) throw Error(body.message)
 
-const styles = theme => ({
-  main: {
-    padding: theme.spacing(3),
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(2),
-    },
-  },
-});
+		return body
+	}
 
-const App = ({ classes }) => (
-  <Fragment>
-    <CssBaseline />
-    <AppHeader />
-    <main className={classes.main}>
-      <Home />
-    </main>
-  </Fragment>
-);
+	const [renderedRes, setRenderedRes] = useState({})
+	useEffect( () => {
+		getRes()
+			.then(res => {
+				setRenderedRes(res)
+			})
+	})
+					
+  return (
+    <div className="App">
+			<h2>Call out to API</h2>
+			<p>{ renderedRes.express }</p>
+		</div>
+  );  
+}
 
-export default withStyles(styles)(App);
+export default App;
+
