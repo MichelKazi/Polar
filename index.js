@@ -11,11 +11,12 @@ const port = 3000;
 
 
 // session support is required to use ExpressOIDC
+
 app.use(session({
     secret: process.env.RANDOM_SECRET_WORD,
     resave: true,
     saveUninitialized: false
-}));
+})); //This is where we create session middleware
 
 const oidc = new ExpressOIDC({
     issuer: `${process.env.OKTA_ORG_URL}/oauth2/default`,
