@@ -1,5 +1,7 @@
+require('dotenv').config
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 
 const app=express()
 const port = process.env.PORT || 5000
@@ -12,7 +14,7 @@ app.get('/', (req, res)=>{
 })
 
 app.get('/api/hello', (req, res) =>{
-	res.send ({ express: 'Hello from Express' })
+	res.send ({ express: 'testing' })
 })
 
 app.post('/api/world', (req, res) => {

@@ -9,13 +9,14 @@ function App() {
 		return body
 	}
 
-	const [renderedRes, setRenderedRes] = useState({})
+	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
+	
 	useEffect( () => {
 		getRes()
 			.then(res => {
 				setRenderedRes(res)
 			})
-	})
+	}, [])
 					
   return (
     <div className="App">
