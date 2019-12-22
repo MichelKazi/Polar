@@ -14,8 +14,8 @@ module.exports = {
 		},
 		password: {
 			type; 'string',
-			required: 'true',
-			protect: 'true'
+			required: true,
+			protect: true
 		}
   },
 };
