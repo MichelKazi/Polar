@@ -1,5 +1,8 @@
 # Notes
 
+
+
+
 ## Express JS
 
 *What is Express JS?*
@@ -44,7 +47,8 @@ in the context of Express, middleware is any number of functions that are invoke
 Since this is a dating app, I obviously need users, which I figured can be an object.  
 However, I also need to put users in a database.  
 The users and their profiles are going to be in a database, but does it make sense to have a user object?  
-So like when the user logs in, a new user object is instantiated and that stuff can be passed to the client
+So like when the user logs in, a new user object is instantiated and that stuff can be passed to the client  
+Also since it's 2019 (about to be 2020 soon yay!) I think I'll just make users a function. (hope you're happy james 🙄)
 
 ## Dependencies and documentations
 
