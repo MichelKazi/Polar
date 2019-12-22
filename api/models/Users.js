@@ -13,7 +13,7 @@ module.exports = {
       example: 'name@example.com'
 		},
 		password: {
-			type; 'string',
+			type: 'string',
 			required: true,
 			protect: true
 		}

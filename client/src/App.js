@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
 
 function App() {
-	const getRes = async () =>{
-		const res = await fetch('/api/hello')
+	const getRes = async (endpoint) =>{
+		const res = await fetch(endpoint)
 		const body = await res.json()
 		return body
 	}
@@ -10,7 +10,7 @@ function App() {
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {
-		getRes()
+		getRes('/users')
 			.then(res => {
 				setRenderedRes(res)
 			})
@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
 			<h2>Call out to API</h2>
-			<p>{ renderedRes.express }</p>
+			<p>{ renderedRes[0][0] }</p>
 		</div>
   );  
 }
