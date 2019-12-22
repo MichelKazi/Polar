@@ -3,8 +3,19 @@
 
 module.exports = {
   attributes: {
-		id: { type: 'int', required: 'true'  },
-		email: { type: 'string', requred: 'true'  },
-		password: { type: 'string', required: 'true'  }
+		id: { type: 'integer',required: true,  autoIncrement: true  },
+		email: {
+			type: 'string',
+      required: true,
+      unique: true,
+      isEmail: true,
+      maxLength: 200,
+      example: 'name@example.com'
+		},
+		password: {
+			type; 'string',
+			required: 'true',
+			protect: 'true'
+		}
   },
 };
