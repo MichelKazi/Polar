@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
 			<h2>Call out to API</h2>
-			<p>{ renderedRes[0][0] }</p>
+			<p>{ renderedRes["email"] }</p>
 		</div>
   );  
 }
