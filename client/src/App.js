@@ -1,16 +1,10 @@
 import React, { useState, useEffect} from 'react';
-
+import getRes from './getRes.js';
 function App() {
-	const getRes = async (endpoint) =>{
-		const res = await fetch(endpoint)
-		const body = await res.json()
-		return body
-	}
-
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {
-		getRes('/users')
+		getRes('/users/7')
 			.then(res => {
 				setRenderedRes(res)
 			})
