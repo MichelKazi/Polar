@@ -4,6 +4,7 @@
 ## Database Stuff
 Since my users are going to choose whether or not they like someone, I could probably use another table in my database  
 These tables will subsequently have a 'many to many' relationship 
+[This](https://fmhelp.filemaker.com/help/18/fmp/en/index.html#page/FMP_Help/many-to-many-relationships.html) should help shed more light on that.
 
 #### Migrations
 To keep from having to redo SQL in migration again during production, I'm going to create the new table with a migration  
