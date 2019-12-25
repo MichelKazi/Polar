@@ -15,7 +15,7 @@ module.exports = {
 	}
 
 	fn: async (inputs) =>{
-		var userRecord = await User.findOne({
+		const userRecord = await User.findOne({
 			email: inputs.email.toLowerCase()
 		})
 		if(!userRecord) {

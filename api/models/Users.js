@@ -26,6 +26,10 @@ module.exports = {
 					new Date(), new Date(value)
 				) >= 18
 			} 
+		},
+		location: {
+			// need to find a way to store user's geolocation here
+			
 		}
   },
 };
