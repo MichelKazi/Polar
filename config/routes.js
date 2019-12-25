@@ -21,7 +21,6 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
-	'get /users/:id': 'UsersController.findOne'
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

@@ -1,4 +1,5 @@
 // api/models/Users.js
+dateFns = require('date-fns')
 
 
 module.exports = {
@@ -16,6 +17,15 @@ module.exports = {
 			type: 'string',
 			required: true,
 			protect: true
+		},
+		dob: {
+			type: 'string',
+			required: true,
+			custom: (value)=>{
+				return dateFns.differenceInYears(
+					new Date(), new Date(value)
+				) >= 18
+			} 
 		}
   },
 };
