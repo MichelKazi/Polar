@@ -1,7 +1,19 @@
-# blank
+# Polar
 
 a [Sails v1](https://sailsjs.com) application
 
+
+## TODO
+- Read documentation on Controllers
+- Read documentation on Models
+- Read documentation on Migrations
+- Read Documentation on Sails routing
+
+- Finish Users model
+	- Add user's location, this will be updated every time user uses the app
+- Finish login and signup actions
+
+ 
 
 ### Links
 

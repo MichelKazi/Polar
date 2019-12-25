@@ -1,5 +1,6 @@
 # Sails JS 
 
+
 ## Request (req) and Response (res)
 
 I've seen (req, res) all over the place watching Express JS tutorials or reading code without context to what it really is.  
@@ -27,13 +28,13 @@ app.get('/users/:name', (req, res) => {
 The `res` object represents and HTTP response sent from Express when it gets an HTTP request  
 The res object has [a lot of methods](https://expressjs.com/en/api.html#res)  
 Some of the important ones to know for this project should be:
-	- `res.json([body])`
-		- This sends a json string of any object that can be serialized as JSON
-	- `res.redirect([status], path)`
-		- This method will redirect a user to another route or valid URL.
-		- If left unspecified, [status] will default to 302 //found
-	- `res.render(view)`
-		- This renders the template file you have in your views/ directory 
+- `res.json([body])`
+	- This sends a json string of any object that can be serialized as JSON
+- `res.redirect([status], path)`
+	- This method will redirect a user to another route or valid URL.
+	- If left unspecified, [status] will default to 302 //found
+- `res.render(view)`
+	- This renders the template file you have in your views/ directory 
 
 
 ## Actions
