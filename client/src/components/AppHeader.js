@@ -1,15 +1,13 @@
 import React from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
-const AppHeader = () => (
+const AppHeader = (props) => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="h6" color="inherit">
-        My React App
+				Welcome {props.userName}! 
       </Typography>
     </Toolbar>
   </AppBar>

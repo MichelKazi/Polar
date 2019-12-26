@@ -1,7 +1,7 @@
-const getRes = async (endpoint) =>{
-	const res = await fetch(endpoint)
-	const body = await res.json()
-	return body
+const axios = require('axios')
+const getRes = async (endpoint) => {
+	return await axios.get(endpoint)
+		.then((res)=> {return res.data})
 }
 
 export default getRes;
