@@ -1,4 +1,4 @@
-// api/models/Users.js
+// api/models/User.js
 const dateFns = require('date-fns');
 
 

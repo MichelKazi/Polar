@@ -7,7 +7,7 @@ function App() {
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {
-		getRes('/users/1')
+		getRes('/user/1')
 			.then(res => {
 				setRenderedRes(res)
 			})

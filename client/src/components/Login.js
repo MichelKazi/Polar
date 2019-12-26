@@ -6,7 +6,7 @@ import {
   Button,
   TextField
 } from "@material-ui/core";
-const axios = require('axios')
+const axios = require('axios');
 
 const Login = props => {
 	
@@ -18,7 +18,10 @@ const Login = props => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		axios.put('')
+		axios.put('/api/v1/entrance/login', {
+			email: email,
+			password: '12345'
+		})
 		
 	} 
 

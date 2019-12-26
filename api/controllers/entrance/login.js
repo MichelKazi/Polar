@@ -1,3 +1,5 @@
+const stdlib = require('sails-stdlib');
+const R = require('ramda');
 module.exports = {
 
   friendlyName: 'Log in',
@@ -18,18 +20,23 @@ module.exports = {
     badCombo: { responseType: 'unauthorized' }
   },
 
-  fn: async (inputs) => {
+  fn: async function(inputs){
     const userRecord = await User.findOne({
       email: inputs.email.toLowerCase()
     });
+    console.log(userRecord);
     if(!userRecord) {
       throw 'badCombo';
     }
 
-    await sails.helpers.passwords.checkPassword(inputs.password, userRecord.password)
-		.intercept('incorrect', 'badCombo');
+    if (inputs.password!== userRecord.password){
+      throw 'badCombo';
+    }
+    //    await stdlib( 'passwords' ).checkPassword(inputs.password, userRecord.password)
+    //		.intercept('incorrect', 'badCombo');
 
     this.req.session.userId = userRecord.id;
+    this.req.session.userName = userRecord.name;
   }
 
 };
