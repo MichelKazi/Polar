@@ -15,9 +15,7 @@
 
 module.exports.datastores = {
   default: {
-		adapter: 'sails-postgresql',
-		url: 'postgresql://postgres:0223@localhost:5432/postgres',
+    adapter: 'sails-postgresql',
+    url: 'postgresql://postgres:0223@localhost:5432/postgres',
   },
-
-
 };

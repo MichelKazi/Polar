@@ -91,6 +91,8 @@ and the `fn` object, which carries out the actual function of the action.
 You can then let a route call the action in your `config/routes.js` directory like so:
 `'PUT   /api/v1/entrance/login': { action: 'path/to/login'  },`
 
+## Controllers
+
 
 ## Database Stuff
 Since my users are going to choose whether or not they like someone, I could probably use another table in my database  
