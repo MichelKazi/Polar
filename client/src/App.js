@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import getRes from './getRes.js';
 import AppHeader from './components/AppHeader.js';
 import Login from './components/Login.js';
+import SignIn from './components/SignIn';
 
 function App() {
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
@@ -16,7 +17,7 @@ function App() {
   return (
     <div className="App">
 			<AppHeader userName={renderedRes['fullName']} />
-			<Login />
+			<SignIn />
 		</div>
   );  
 }
