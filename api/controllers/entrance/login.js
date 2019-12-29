@@ -20,11 +20,10 @@ module.exports = {
     badCombo: { responseType: 'unauthorized' }
   },
 
-  fn: async function(inputs){
+  fn: async function(inputs, req, res){
     const userRecord = await User.findOne({
       email: inputs.email.toLowerCase()
     });
-    console.log(userRecord);
     if(!userRecord) {
       throw 'badCombo';
     }
@@ -36,7 +35,9 @@ module.exports = {
     //		.intercept('incorrect', 'badCombo');
 
     this.req.session.userId = userRecord.id;
-    this.req.session.userName = userRecord.name;
+    this.req.session.userRecord = R.omit(['password'], userRecord);
+    this.res.send(R.omit(['password'], userRecord));
+
   }
 
 };
