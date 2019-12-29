@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,13 +11,14 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+const axios  = require('axios');
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/MichelKazi/Polar">
+				Polar
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -48,6 +49,34 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+	const [user, setUser] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+
+	const handleEmail = (e) => {
+		setEmail(e.target.value)
+	} 
+
+	const handlePassword = (e) => {
+		setPassword(e.target.value)
+	}
+
+	const handleSubmit = (e) => {
+		e.preventDefault()
+
+		axios
+			.put('/api/v1/entrance/login', {
+				email: email,
+				password: password 
+			})
+			.then( res => {
+				setUser(res.data)
+			}
+		)
+		console.log(user)
+		
+	} 
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -57,8 +86,9 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate >
           <TextField
+						onChange={handleEmail}
             variant="outlined"
             margin="normal"
             required
@@ -70,6 +100,7 @@ export default function SignIn() {
             autoFocus
           />
           <TextField
+						onChange={handlePassword}
             variant="outlined"
             margin="normal"
             required
@@ -86,6 +117,7 @@ export default function SignIn() {
           />
           <Button
             type="submit"
+						onClick={handleSubmit}
             fullWidth
             variant="contained"
             color="primary"

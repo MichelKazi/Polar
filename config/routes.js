@@ -32,7 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/api/v1/account/logout':	{ action: 'account/logout'  },
+  '/api/v1/account/logout':				{ action: 'account/logout'  },
   'PUT /api/v1/entrance/login':		{ action: 'entrance/login' },
   'POST /api/v1/entrance/signup':	{ action: 'entrance/signup' },
 
