@@ -1,4 +1,3 @@
-const stdlib = require('sails-stdlib');
 const R = require('ramda');
 module.exports = {
 
