@@ -27,11 +27,8 @@ module.exports = {
       throw 'badCombo';
     }
 
-    if (inputs.password!== userRecord.password){
-      throw 'badCombo';
-    }
-    //    await stdlib( 'passwords' ).checkPassword(inputs.password, userRecord.password)
-    //		.intercept('incorrect', 'badCombo');
+    await sails.helpers.passwords.checkPassword(inputs.password, userRecord.password)
+    .intercept('incorrect', 'badCombo');
 
     this.req.session.userId = userRecord.id;
     this.req.session.userRecord = R.omit(['password'], userRecord);
