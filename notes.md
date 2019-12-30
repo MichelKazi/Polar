@@ -1,3 +1,11 @@
+# Polar
+## Implementing a Recommendation algorithm
+What I need for my program is to implement a "smart filter" for users  
+This 'filter' will show users ONLY the profiles I want them to see.  
+It's easy to read an article like [this one](https://www.klipfolio.com/blog/recommender-system) on the high level concept of recommendations.  
+
+
+
 # Sails JS 
 
 
