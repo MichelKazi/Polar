@@ -32,6 +32,23 @@ module.exports = {
     },
     age: {
       type: 'number',
-    }
+    },
+    image1:{
+      // required: true,
+      type: 'string',
+      isURL: true
+    },
+    image2:{
+      type: 'string',
+      isURL: true
+    },
+    image3:{
+      type: 'string',
+      isURL: true
+    },
+    image4:{
+      type: 'string',
+      isURL: true
+    },
   },
 };

@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import getRes from './getRes.js';
 import AppHeader from './components/AppHeader.js';
 import SignIn from './components/SignIn';
-
+import SignUp from './components/SignUp';
 const context = React.createContext();
 
 
@@ -19,7 +19,8 @@ function App() {
   return (
     <div className="App">
 			<AppHeader userName={renderedRes['fullName']} />
-			<SignIn />
+			<SignUp />
+
 		</div>
   );  
 }
