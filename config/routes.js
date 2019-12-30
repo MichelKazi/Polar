@@ -36,4 +36,7 @@ module.exports.routes = {
   'PUT /api/v1/entrance/login':		{ action: 'entrance/login' },
   'POST /api/v1/entrance/signup':	{ action: 'entrance/signup' },
 
+
+  'POST /api/v1/account/add-image': { action: 'account/add-image' },
+
 };
