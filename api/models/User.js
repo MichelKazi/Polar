@@ -38,17 +38,5 @@ module.exports = {
       type: 'string',
       isURL: true
     },
-    image2:{
-      type: 'string',
-      isURL: true
-    },
-    image3:{
-      type: 'string',
-      isURL: true
-    },
-    image4:{
-      type: 'string',
-      isURL: true
-    },
   },
 };
