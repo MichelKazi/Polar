@@ -59,11 +59,12 @@ module.exports = {
 
   fn: async function (inputs) {
 
+    const newName = inputs.fullName.replace(/\w\S*/g, (txt) => {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
     const newEmail = inputs.email.toLowerCase();
     const newUserRecord = await User.create({
       email: newEmail,
       password: await sails.helpers.passwords.hashPassword(inputs.password),
-      fullName: inputs.fullName,
+      fullName: newName,
       dob: inputs.dob,
       age: dateFns.differenceInYears(new Date(), new Date(inputs.dob)),
       gender: inputs.gender,
