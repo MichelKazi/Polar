@@ -36,6 +36,10 @@ module.exports = {
     preference: {
       defaultsTo: 'doesn\'t matter',
       type: 'string'
+    },
+    location: {
+      type: 'json',
+      //required: true
     }
   },
 
@@ -73,5 +77,11 @@ module.exports = {
 		.fetch();
 
     this.req.session.userId = newUserRecord.id;
+
+    const values = {
+      location: inputs.location
+    };
+    User.updateOne({ id: await newUserRecord.id })
+			.set(values);
   }
 };
