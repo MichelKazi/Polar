@@ -6,11 +6,6 @@ module.exports = {
 
 
   inputs: {
-    email: {
-      type: 'string',
-      isEmail: true,
-      required: true
-    },
     url:{
       type: 'string',
       isURL: true
@@ -30,7 +25,7 @@ module.exports = {
       image1: inputs.url
     };
 
-    return await User.updateOne({ email: inputs.email })
+    return await User.updateOne({ id: await this.req.session.userId })
 			.set(values);
     // All done.
 
