@@ -38,5 +38,15 @@ module.exports = {
       type: 'string',
       isURL: true
     },
+    gender:{
+      type: 'string',
+      required: true,
+      isIn: ['male', 'female', 'non-binary']
+    },
+    preference:{
+      defaultsTo: 'doesn\'t maatter',
+      type: 'string',
+      isIn: ['men', 'women', 'non-binary', 'doesn\'t matter']
+    }
   },
 };

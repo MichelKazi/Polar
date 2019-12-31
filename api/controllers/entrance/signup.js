@@ -28,6 +28,14 @@ module.exports = {
     dob: {
       required: true,
       type: 'string'
+    },
+    gender: {
+      required: true,
+      type: 'string',
+    },
+    preference: {
+      defaultsTo: 'doesn\'t matter',
+      type: 'string'
     }
   },
 
@@ -57,7 +65,9 @@ module.exports = {
       password: await sails.helpers.passwords.hashPassword(inputs.password),
       fullName: inputs.fullName,
       dob: inputs.dob,
-      age: dateFns.differenceInYears(new Date(), new Date(inputs.dob))
+      age: dateFns.differenceInYears(new Date(), new Date(inputs.dob)),
+      gender: inputs.gender,
+      preference: inputs.preference,
     })
 		.fetch();
 
