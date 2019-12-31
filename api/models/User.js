@@ -47,6 +47,9 @@ module.exports = {
       defaultsTo: 'doesn\'t maatter',
       type: 'string',
       isIn: ['men', 'women', 'non-binary', 'doesn\'t matter']
-    }
+    },
+		location:{
+			type: 'json',
+		}
   },
 };

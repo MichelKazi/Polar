@@ -11,7 +11,13 @@ module.exports = {
       required: true
     },
     password: { type: 'string', required: true },
-    rememberMe: { type: 'boolean' }
+
+    rememberMe: { type: 'boolean' },
+
+    location: {
+      type: 'json',
+      //required: true
+    }
   },
 
   exits: {
@@ -30,7 +36,14 @@ module.exports = {
     await sails.helpers.passwords.checkPassword(inputs.password, userRecord.password)
     .intercept('incorrect', 'badCombo');
 
+
     this.req.session.userId = await userRecord.id;
+    const values = {
+      location: inputs.location
+    };
+    User.updateOne({ id: await userRecord.id })
+			.set(values);
+
     this.req.session.userRecord = await R.omit(['password'], userRecord);
     this.res.send(R.omit(['password'], userRecord));
 
