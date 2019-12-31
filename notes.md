@@ -22,6 +22,17 @@ The user would need to answer questions of some sort...
 	- Apartment
 	- Can't hear you, tractor is running
 
+The answers could be stored like so: 
+```
+{
+	question1: 1,
+	question2: 3,
+	question3: 4,
+	question4: 2
+}
+```
+If someone else's traits object looked just like mine, our profiles wouldn't be shown to each other.
+
 I'm sure I'll draft up better questions later, but this will be what I use to decide what kind of profiles the user is exposed to.  
 Actually, this is really simple because the only way you wouldn't see a user's profile is if:
 - They are not your gender preference
@@ -32,6 +43,27 @@ Actually, this is really simple because the only way you wouldn't see a user's p
 Okay. So we have Users with their attributes and preferences  
 We now have to find a way to send profiles to the front end to render  
 These profiles are based on a few things.. A user's location, range, dating preferences, and the most important thing, differences  
+
+I generated an action in sails with `sails generate action dashboard/showProfiles`  
+This creates an action, showprofiles.js.  
+Here's the tricky part, and sort of a todo list because i'm going to bed a 99% sure I'm gonna forget everything  
+- accept user's email as input, this'll just come from the session
+
+
+the action itself would look like: 
+```javascript
+	const profilesToRender = User.find({
+
+		where: {
+			location: {/*based on user's range specification*/},
+			gender: {/*based on user's gender preference*/},
+			traits: {/*based on if the user has any different answer in the traits questionairre*/}
+		},
+
+		select: [ fullName, age, image1, bio ]
+
+		})
+```
 
 
 ## Implementing a Recommendation algorithm
