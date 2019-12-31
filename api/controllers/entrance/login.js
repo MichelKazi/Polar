@@ -30,8 +30,8 @@ module.exports = {
     await sails.helpers.passwords.checkPassword(inputs.password, userRecord.password)
     .intercept('incorrect', 'badCombo');
 
-    this.req.session.userId = userRecord.id;
-    this.req.session.userRecord = R.omit(['password'], userRecord);
+    this.req.session.userId = await userRecord.id;
+    this.req.session.userRecord = await R.omit(['password'], userRecord);
     this.res.send(R.omit(['password'], userRecord));
 
   }

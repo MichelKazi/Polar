@@ -1,3 +1,4 @@
+const geolib = require('geolib');
 module.exports = {
 
 
@@ -8,11 +9,11 @@ module.exports = {
 
 
   inputs: {
-		userEmail: {
-			isRequired: true,
-			type: 'string',
+    userEmail: {
+      isRequired: true,
+      type: 'string',
 
-		}
+    }
   },
 
 
@@ -22,10 +23,22 @@ module.exports = {
 
 
   fn: async function (inputs) {
+    //const loggedInUser = await User.findOne({email: inputs.email});
+    const loggedInUser = await this.req.session.userRecord;
 
-		
+
+    const profilesToRender = await User.find({
+      where: {
+        location: {
+          '<=': geolib,
+
+        }
+      }
+    });
+
+
+
     // All done.
-    return;
 
   }
 
