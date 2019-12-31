@@ -37,6 +37,9 @@ Some of the important ones to know for this project should be:
 	- This renders the template file you have in your views/ directory 
 
 
+## Controllers
+
+
 ## Actions
 
 Actions serve as the _middleman_ between your models and views. The logic of your app is contained in the actions files  

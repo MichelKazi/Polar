@@ -6,6 +6,8 @@ A user needs to have a few things upon signup
 - password
 - DOB
 - zipcode (or something else related to location idk)  
+- Gender
+- Preference
 
 After having the user's account created, I would probably also need to store their traits.  
 How would I do this?  
@@ -25,6 +27,12 @@ Actually, this is really simple because the only way you wouldn't see a user's p
 - They are not your gender preference
 - They don't live within your range
 - They have the exact same answers as you
+
+## Sending Profiles To Render
+Okay. So we have Users with their attributes and preferences  
+We now have to find a way to send profiles to the front end to render  
+These profiles are based on a few things.. A user's location, range, dating preferences, and the most important thing, differences  
+
 
 ## Implementing a Recommendation algorithm
 What I need for my program is to implement a "smart filter" for users  
