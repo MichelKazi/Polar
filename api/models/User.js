@@ -48,8 +48,8 @@ module.exports = {
       type: 'string',
       isIn: ['men', 'women', 'non-binary', 'doesn\'t matter']
     },
-		location:{
-			type: 'json',
-		}
+    location:{
+      type: 'json',
+    }
   },
 };

@@ -23,16 +23,22 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    //const loggedInUser = await User.findOne({email: inputs.email});
-    const loggedInUser = await this.req.session.userRecord;
+    const loggedInUser = await User.findOne({id: this.req.session.userId});
 
 
     const profilesToRender = await User.find({
       where: {
-        location: {
-          '<=': geolib,
 
+        location: {
+          // check if User's location within specified range
+        },
+        gender: {
+          // >=minimum <=maximum
+        },
+        age: {
+          // user's preferred age range
         }
+
       }
     });
 
