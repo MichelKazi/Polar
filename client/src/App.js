@@ -3,14 +3,14 @@ import getRes from './getRes.js';
 import AppHeader from './components/AppHeader.js';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-const context = React.createContext();
+import UserContext from './UserContext';
 
 
 function App() {
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {
-		console.log(process.env.REACT_APP_NOT_SECRET_CODE)
+		console.log(process.env.REACT_APP_Bucket)
 		getRes('/user/1')
 			.then(res => {
 				setRenderedRes(res)
@@ -18,11 +18,14 @@ function App() {
 	}, [])
 					
   return (
-    <div className="App">
-			<AppHeader userName={renderedRes['fullName']} />
-			<SignUp />
 
-		</div>
+		<UserContext.Provider value={69}>
+			<div className="App">
+				<AppHeader userName={renderedRes['fullName']} />
+				<SignIn />
+
+			</div>
+		</UserContext.Provider>
   );  
 }
 

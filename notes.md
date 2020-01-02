@@ -65,6 +65,16 @@ the action itself would look like:
 		})
 ```
 
+## Allowing users to chat in my app
+
+The best way to go about this is implementing a p2p protocol (XMPP)  
+A TCP connection would make it possible for clients to communicate.  
+Since I'm only handling direct messaging and not group chats (This dating app isn't polyamorous yet)...  
+I can get away with using sessions to manage messaging between clients  
+
+### Handling a potential pitfall of messaging
+
+
 
 ## Implementing a Recommendation algorithm
 What I need for my program is to implement a "smart filter" for users  
@@ -72,4 +82,7 @@ This 'filter' will show users ONLY the profiles I want them to see.
 It's easy to read an article like [this one](https://www.klipfolio.com/blog/recommender-system) on the high level concept of recommendations.  
 In this specific case for my project, every User is also a product.
 
+How would I note recommendations for the client?
+Although there's a system in place to decide who a user is exposed to, I can also hold information on every single match  
+This could be another model, for userId matched with otherUserId
 
