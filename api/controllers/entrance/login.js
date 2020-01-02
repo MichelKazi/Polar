@@ -25,7 +25,7 @@ module.exports = {
     badCombo: { responseType: 'unauthorized' }
   },
 
-  fn: async function(inputs, req, res){
+  fn: async function(inputs){
     const userRecord = await User.findOne({
       email: inputs.email.toLowerCase()
     });
@@ -45,7 +45,7 @@ module.exports = {
 			.set(values);
 
     this.req.session.userRecord = await R.omit(['password'], userRecord);
-    this.res.send(R.omit(['password'], userRecord));
+    this.res.send(await R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord));
 
   }
 

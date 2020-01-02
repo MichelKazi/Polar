@@ -52,30 +52,41 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+	const user = useContext(store);
+	const { dispatch } = user;
 	//const [user, setUser] = useState("")
 	//const [email, setEmail] = useState("")
 	//const [password, setPassword] = useState("")
 
 	const handleEmail = (e) => {
+		dispatch({type: 'handleEmail', payload: e.target.value})
 		//setEmail(e.target.value)
 	} 
 
 	const handlePassword = (e) => {
+		dispatch({type: 'handlePassword', payload: e.target.value})
 		//setPassword(e.target.value)
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
+		console.log(user.state)
 
-		axios
+		const response = await axios
 			.put('/api/v1/entrance/login', {
+				email: user.state.email,
+				password: user.state.password
 				//email: email,
 				//password: password 
 			})
 			.then( res => {
+				console.log(`${user.fullName} is logged in!`)
+		    dispatch({type: 'setUser', payload: res.data})
+				return res.data;
 				//setUser(res.data)
 			}
 		)
+		console.log(response)
 		console.log(user)
 		
 	} 

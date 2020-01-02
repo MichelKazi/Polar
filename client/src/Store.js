@@ -1,16 +1,19 @@
 // store.js
 import React, {createContext, useReducer} from 'react';
 
-const initialState = { User:{} };
+const initialState = { };
 const store = createContext(initialState);
 const { Provider } = store;
 
 const StateProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
-      case 'action description':
-        const newState=null;  // do something with the action
-        return newState;
+      case 'handleEmail':
+				return {...state, email: action.payload}	
+			case 'handlePassword':
+				return {...state, password: action.payload}
+			case 'setUser':
+				return {...state, user: action.payload}
       default:
         throw new Error();
     };
