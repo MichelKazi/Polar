@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import UserContext from '../UserContext.js';
+import { store } from '../Store.js';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -47,19 +47,21 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+
 export default function SignIn() {
   const classes = useStyles();
 
-	const [user, setUser] = useState("")
-	const [email, setEmail] = useState("")
-	const [password, setPassword] = useState("")
+	//const [user, setUser] = useState("")
+	//const [email, setEmail] = useState("")
+	//const [password, setPassword] = useState("")
 
 	const handleEmail = (e) => {
-		setEmail(e.target.value)
+		//setEmail(e.target.value)
 	} 
 
 	const handlePassword = (e) => {
-		setPassword(e.target.value)
+		//setPassword(e.target.value)
 	}
 
 	const handleSubmit = (e) => {
@@ -67,11 +69,11 @@ export default function SignIn() {
 
 		axios
 			.put('/api/v1/entrance/login', {
-				email: email,
-				password: password 
+				//email: email,
+				//password: password 
 			})
 			.then( res => {
-				setUser(res.data)
+				//setUser(res.data)
 			}
 		)
 		console.log(user)
