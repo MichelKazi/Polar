@@ -7,7 +7,6 @@ import { store } from './Store'
 
 
 function App() {
-	const User = useContext(store);
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {

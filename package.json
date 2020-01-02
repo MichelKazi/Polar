@@ -28,7 +28,7 @@
     "eslint": "^6.6.0"
   },
   "scripts": {
-    "server": "nodemon app.js",
+    "server": "nodemon --ignore './client/' app.js",
     "client": "cd client && yarn start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start": "NODE_ENV=production node app.js",

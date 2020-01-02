@@ -87,7 +87,7 @@ export default function SignIn() {
 			}
 		)
 		console.log(response)
-		console.log(user)
+		console.log(user.state)
 		
 	} 
 

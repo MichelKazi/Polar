@@ -13,6 +13,8 @@ const StateProvider = ( { children } ) => {
 			case 'handlePassword':
 				return {...state, password: action.payload}
 			case 'setUser':
+				delete state.email;
+				delete state.password;
 				return {...state, user: action.payload}
       default:
         throw new Error();
