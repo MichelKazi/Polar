@@ -81,13 +81,13 @@ export default function SignIn() {
 			})
 			.then( res => {
 				console.log(`${user.fullName} is logged in!`)
-		    dispatch({type: 'setUser', payload: res.data})
 				return res.data;
 				//setUser(res.data)
 			}
 		)
+		dispatch({type: 'setUser', payload: response})
 		console.log(response)
-		console.log(user.state)
+		console.log(user)
 		
 	} 
 

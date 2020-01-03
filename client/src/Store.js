@@ -1,8 +1,12 @@
 // store.js
 import React, {createContext, useReducer} from 'react';
 
-const initialState = { };
-const store = createContext(initialState);
+const userState = {
+	id: 0,
+	fullName: null
+} 
+
+const store = createContext(userState);
 const { Provider } = store;
 
 const StateProvider = ( { children } ) => {
@@ -15,11 +19,11 @@ const StateProvider = ( { children } ) => {
 			case 'setUser':
 				delete state.email;
 				delete state.password;
-				return {...state, user: action.payload}
+				return {...state, ...action.payload}
       default:
-        throw new Error();
+        return {...state}
     };
-  }, initialState);
+  }, userState);
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 };

@@ -7,19 +7,20 @@ import { store } from './Store'
 
 
 function App() {
+	const userState = useContext(store)
 	const [renderedRes, setRenderedRes] = useState({}) // put an empty object since res sends a json
 	
 	useEffect( () => {
-		getRes('/user/1')
+		getRes(`user/${userState.state.id}`)
 			.then(res => {
 				setRenderedRes(res)
 			})
-	}, [])
+	}, [userState.state.id])
 					
   return (
 
 			<div className="App">
-				<AppHeader userName={renderedRes['fullName']} />
+				<AppHeader />
 				<SignIn />
 
 			</div>
