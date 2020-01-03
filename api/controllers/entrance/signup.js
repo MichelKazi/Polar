@@ -76,7 +76,7 @@ module.exports = {
     })
 		.fetch();
 
-    this.req.session.userId = newUserRecord.id;
+    this.req.session.userId = await newUserRecord.id;
 
     const values = {
       location: inputs.location
