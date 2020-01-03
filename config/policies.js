@@ -10,6 +10,11 @@
 
 module.exports.policies = {
 
+
+  controllerName: {
+    'action-name': 'isAuthenticated'
+  }
+
   /***************************************************************************
   *                                                                          *
   * Default policy for all controllers and actions, unless overridden.       *
