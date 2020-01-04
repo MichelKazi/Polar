@@ -10,22 +10,16 @@
 
 module.exports.policies = {
 
+  '*': 'isAuthenticated',
 
-  controllerName: {
-    'action-name': 'isAuthenticated'
-  },
-
-  'signup': true,
-  'login': true,
+  'entrance/signup': true,
+  'entrance/login': true,
   /***************************************************************************
   *                                                                          *
   * Default policy for all controllers and actions, unless overridden.       *
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-  'add-image': 'isAuthenticated',
-  'show-profiles': 'isAuthenticated',
-  'update-location': 'isAuthenticated'
 
   // '*': true,
 
