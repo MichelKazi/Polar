@@ -14,7 +14,6 @@ module.exports = {
 
 
   fn: async function (inputs) {
-    sails.log(`user sent to show-profiles.js: ${this.req.user.sub}`);
     sails.log(this.req.user);
     const loggedInUser = await User.findOne({
       id: this.req.user.id
@@ -24,7 +23,7 @@ module.exports = {
 
     const profilesToRender = await User.find({
       where: {
-        age: { '>=': loggedInUser.agePreference },
+        //age: { '>=': loggedInUser.agePreference },
         id: {
           '!=': this.req.user.id
         }

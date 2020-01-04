@@ -58,6 +58,7 @@ module.exports = {
         req.user = R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], user);
 
 
+        sails.log(req.user);
         return exits.success(user);
       });
     }

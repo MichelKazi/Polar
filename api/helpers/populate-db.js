@@ -1,15 +1,15 @@
 const dateFns = require('date-fns');
-
 module.exports = {
 
 
-  friendlyName: 'Signup',
+  friendlyName: 'Populate db',
 
 
-  description: 'Signup entrance.',
+  description: '',
 
 
   inputs: {
+
     email: {
       type: 'string',
       required: true,
@@ -47,21 +47,13 @@ module.exports = {
     }
   },
 
+
   exits: {
 
     success: {
-      description: 'New user account was created successfully.'
+      description: 'All done.',
     },
 
-    invalid: {
-      responseType: 'badRequest',
-      description: 'The provided fullName, password and/or email address are invalid.',
-    },
-
-    emailAlreadyInUse: {
-      statusCode: 409,
-      description: 'The provided email address is already in use.',
-    },
   },
 
 
@@ -81,19 +73,14 @@ module.exports = {
     })
 		.fetch();
 
-    // update user's location
+
     const values = {
-      sub: await newUserRecord.id,
       location: inputs.location
     };
     User.updateOne({ id: await newUserRecord.id })
 			.set(values);
-
-    // create a JWT token for the newly minted user:w
-    const userId = newUserRecord.id;
-    const token = await sails.helpers.assignJwt.with({ userId });
-
-    this.res.send(await token);
   }
 
+
 };
+
