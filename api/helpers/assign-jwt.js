@@ -31,7 +31,7 @@ module.exports = {
 
     const userRecord = await User.findOne({ id: inputs.userId });
     const user = R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord);
-
+    user.sub = user.id;
     const token = jwt.sign(await user, process.env.JWT_KEY);
     return exits.success(token);
   }

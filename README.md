@@ -39,6 +39,10 @@ Actually, this is really simple because the only way you wouldn't see a user's p
 - They don't live within your range
 - They have the exact same answers as you
 
+## Authorizing the User
+So far, I created two helper functions to sign and verify jwt tokens.  
+users are assigned jwt tokens, and now I have to make sure that those tokens are properly passed with each request.
+
 ## Sending Profiles To Render
 Okay. So we have Users with their attributes and preferences  
 We now have to find a way to send profiles to the front end to render  

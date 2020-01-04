@@ -25,9 +25,10 @@ module.exports = {
       image1: inputs.url
     };
 
-    return await User.updateOne({ id: await this.req.session.userId })
-			.set(values);
-    // All done.
+
+    return await User.updateOne({ id: await this.req.user.id })
+    .set(values);
+
 
   }
 

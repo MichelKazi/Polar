@@ -41,6 +41,7 @@ module.exports = {
 
     if (req.header('authorization')){ //check if authorization header exists and attempt to get data
       const token = req.header('authorization').split('Bearer ')[1];
+      sails.log(`token from verify-jwt ${token}`);
 
       // Ensure token exists otherwise exit
       if (!token) {return exits.invalid();}
