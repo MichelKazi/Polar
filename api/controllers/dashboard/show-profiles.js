@@ -14,6 +14,8 @@ module.exports = {
 
 
   fn: async function (inputs) {
+    sails.log(`user sent to show-profiles.js: ${this.req.user.sub}`);
+    sails.log(this.req.user);
     const loggedInUser = await User.findOne({
       id: this.req.user.id
       //id: this.req.session.userId

@@ -25,8 +25,6 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
-
-    sails.log(`JWT_KEY is ${process.env.JWT_KEY}`);
     if (!inputs) {return exits.invalid();}
 
     const userRecord = await User.findOne({ id: inputs.userId });

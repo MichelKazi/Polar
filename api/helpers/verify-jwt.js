@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
+const R = require('ramda');
 const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = {
 
@@ -53,7 +55,8 @@ module.exports = {
 
         if (!user) {return exits.invalid();}
 
-        req.user = user;
+        req.user = R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], user);
+
 
         return exits.success(user);
       });
