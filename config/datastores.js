@@ -18,4 +18,8 @@ module.exports.datastores = {
     adapter: 'sails-postgresql',
     url: 'postgresql://postgres:0223@localhost:5432/postgres',
   },
+  //default: {
+  //adapter: 'sails-mongo',
+  //url: 'mongodb://michel:0223@cluster0-ius5u.mongodb.net',
+  //},
 };
