@@ -37,6 +37,10 @@ module.exports = {
       defaultsTo: 'doesn\'t matter',
       type: 'string'
     },
+    agePreference: {
+      type: 'number',
+      required: true
+    },
     location: {
       type: 'json',
       //required: true
@@ -73,6 +77,7 @@ module.exports = {
       age: dateFns.differenceInYears(new Date(), new Date(inputs.dob)),
       gender: inputs.gender,
       preference: inputs.preference,
+      agePreference: inputs.agePreference
     })
 		.fetch();
 

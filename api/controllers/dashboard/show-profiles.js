@@ -25,7 +25,10 @@ module.exports = {
     const profilesToRender = await User.find({
       where: {
         age: { '>=': loggedInUser.agePreference },
-      }
+        id: {
+          '!=': this.req.user.id
+        }
+      },
     });
 
     const profilesToSend = profilesToRender.map(profile => {
