@@ -48,6 +48,9 @@ module.exports = {
       type: 'string',
       isIn: ['men', 'women', 'non-binary', 'doesn\'t matter']
     },
+    agePreference: {
+      type: 'number',
+    },
     location:{
       type: 'json',
     }
