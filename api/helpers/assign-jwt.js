@@ -10,6 +10,7 @@ module.exports = {
 
   inputs: {
     userId: {
+      required: true,
       type: 'number',
     }
   },
@@ -29,8 +30,9 @@ module.exports = {
   fn: async function (exits, inputs) {
     if (!inputs.userId) { return exits.invalid(); }
 
-    let userRecord = await User.findOne({ id: inputs.userId });
+    let userRecord = await User.findOne({ id: await inputs.userId });
     if (!userRecord) { return exits.invalid(); }
+    sails.log(userRecord);
 
     const user = await R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord);
 

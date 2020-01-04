@@ -36,14 +36,14 @@ module.exports = {
     .intercept('incorrect', 'badCombo');
 
 
-    this.req.session.userId = await userRecord.id;
+    const userId = await userRecord.id;
     const values = {
       location: inputs.location
     };
-    User.updateOne({ id: await userRecord.id })
+    User.updateOne({ id: await userId })
 			.set(values);
 
-    const token = sails.helpers.assignJwt.with({ userId: userRecord.id });
+    const token = await sails.helpers.assignJwt.with({ userId });
 
     this.res.send(token);
     //this.res.send(await R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord));
