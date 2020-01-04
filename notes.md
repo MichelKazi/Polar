@@ -37,7 +37,16 @@ I'm sure I'll draft up better questions later, but this will be what I use to de
 Actually, this is really simple because the only way you wouldn't see a user's profile is if:
 - They are not your gender preference
 - They don't live within your range
-- They have the exact same answers as you
+-
+## Authorizing the User
+So far, I created two helper functions to sign and verify jwt tokens.  
+users are assigned jwt tokens, and now I have to make sure that those tokens are properly passed with each request.
+
+UPDATE:  
+Okay... so, I now have to make sure that whenever I am making a request that uses the auth policy I wrote, I send the token in the request header.  
+
+
+ They have the exact same answers as you
 
 ## Sending Profiles To Render
 Okay. So we have Users with their attributes and preferences  
