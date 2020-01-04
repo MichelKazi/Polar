@@ -15,7 +15,7 @@ module.exports = {
 
   fn: async function (inputs) {
     const loggedInUser = await User.findOne({
-      id: 1
+      id: this.req.user.id
       //id: this.req.session.userId
     });
 
