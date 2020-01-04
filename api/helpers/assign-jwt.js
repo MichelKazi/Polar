@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken');
 const R = require('ramda');
+const dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = {
-
-
   friendlyName: 'Assign jwt',
-
 
   description: 'Assign JSON Web Token to the user',
 
@@ -15,7 +15,6 @@ module.exports = {
     }
   },
 
-
   exits: {
     invalid: {
       description: 'User not found',
@@ -23,23 +22,18 @@ module.exports = {
     success: {
       description: 'All done.',
     },
-
   },
 
+  fn: async function (inputs, exits) {
 
-  fn: async function (exits, inputs) {
-    if (!inputs.userId) { return exits.invalid(); }
+    sails.log(`JWT_KEY is ${process.env.JWT_KEY}`);
+    if (!inputs) {return exits.invalid();}
 
-    let userRecord = await User.findOne({ id: await inputs.userId });
-    if (!userRecord) { return exits.invalid(); }
-    sails.log(userRecord);
-
-    const user = await R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord);
+    const userRecord = await User.findOne({ id: inputs.userId });
+    const user = R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord);
 
     const token = jwt.sign(await user, process.env.JWT_KEY);
     return exits.success(token);
   }
-
-
 };
 
