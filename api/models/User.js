@@ -46,7 +46,7 @@ module.exports = {
     preference:{
       defaultsTo: 'doesn\'t matter',
       type: 'string',
-      isIn: ['men', 'women', 'non-binary', 'doesn\'t matter']
+      isIn: ['male', 'female', 'non-binary', 'doesn\'t matter']
     },
     agePreference: {
       type: 'number',

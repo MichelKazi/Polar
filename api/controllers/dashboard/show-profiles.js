@@ -6,30 +6,27 @@ module.exports = {
   friendlyName: 'Show profiles',
 
 
-  description: '',
+  description: 'Show profiles to the User',
 
   exits: {
 
   },
 
 
-  fn: async function (inputs) {
+  fn: async function () {
     sails.log(this.req.user);
 
-    const profilesToRender = await User.find({
+    const potentialMatches = await User.find({
       where: {
         age: { '>=': this.req.user.agePreference  },
-        id: {
-          '!=': this.req.user.id
-        }
+        id: { '!=': this.req.user.id },
+        gender: { contains: this.req.user.preference!=='doesn\'t matter' ? this.req.user.preference : ['male', 'female', 'non-binary']},
+        // location: { compare user's location to profilesToRender location somehow }
       },
+      sort: 'updatedAt DESC'
     });
 
-    //const profilesToRender = await User.query(
-    //`SELECT * FROM user WHERE age>=$1`, this.req.user.agePreference, (result)=> { return result }
-    //);
-
-    const profilesToSend = profilesToRender.map(profile => {
+    const profilesToSend = potentialMatches.map(profile => {
       return R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], profile);
     });
 

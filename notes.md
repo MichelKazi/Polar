@@ -38,15 +38,15 @@ Actually, this is really simple because the only way you wouldn't see a user's p
 - They are not your gender preference
 - They don't live within your range
 -
+
 ## Authorizing the User
-So far, I created two helper functions to sign and verify jwt tokens.  
-users are assigned jwt tokens, and now I have to make sure that those tokens are properly passed with each request.
+For authorization, I decided to go with JWT.  
+This way, I can send the JWT to my client and they'll send it back with every request made.  
+Since sails doesn't have built in JWT support and I'm completely ditching sessions, I wrote two helpers: verify-jwt and assign-jwt.  
+This also meant creating a policy (sail's take on middleware), to authorize the JWT on each request.  
+These helpers and policy will assign JWT to users upon login and sign up, as well as authorize the user on each protected route.
 
-UPDATE:  
-Okay... so, I now have to make sure that whenever I am making a request that uses the auth policy I wrote, I send the token in the request header.  
-
-
- They have the exact same answers as you
+My next step is to handle all the client-side logic with JWT
 
 ## Sending Profiles To Render
 Okay. So we have Users with their attributes and preferences  
