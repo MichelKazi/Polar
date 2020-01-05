@@ -5,12 +5,11 @@ import SignIn from './components/SignIn'
 import getRes from './getRes.js';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { store } from './Store'
-
+import Dashboard from './components/Dashboard.js'
 
 function App() {
 	
 	useEffect( () => {
-		
 	}, [])
 					
   return (
@@ -18,6 +17,7 @@ function App() {
 			<Switch>
 				<Route path="/login" exact component={SignIn} />
 				<Route path="/" exact component={Home} />
+				<Route path="/dashboard" exact component={Dashboard} />
 				
 			</Switch>
 		</BrowserRouter>
