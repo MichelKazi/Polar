@@ -20,6 +20,8 @@ const StateProvider = ( { children } ) => {
 				delete state.email;
 				delete state.password;
 				return {...state, ...action.payload}
+			case 'setToken':
+				return {...state, token: action.payload}
       default:
         return {...state}
     };

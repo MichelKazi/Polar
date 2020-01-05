@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import history from '../history';
 import { store } from '../Store.js';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -12,6 +13,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+const jwt = require('jsonwebtoken');
 
 const axios  = require('axios');
 
@@ -60,14 +62,10 @@ export default function SignIn() {
 
 	const handleEmail = (e) => {
 		dispatch({type: 'handleEmail', payload: e.target.value})
-		//setEmail(e.target.value)
 	} 
-
 	const handlePassword = (e) => {
 		dispatch({type: 'handlePassword', payload: e.target.value})
-		//setPassword(e.target.value)
 	}
-
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		console.log(user.state)
@@ -76,15 +74,20 @@ export default function SignIn() {
 			.put('/api/v1/entrance/login', {
 				email: user.state.email,
 				password: user.state.password
-				//email: email,
-				//password: password 
 			})
 			.then( res => {
-				console.log(`${user.fullName} is logged in!`)
-				return res.data;
-				//setUser(res.data)
+
+				localStorage.setItem('extremely-sensitive-token', res.data)
+				dispatch({ type: 'setToken', payload: localStorage.getItem('extremely-sensitive-token') })	
+				return jwt.decode(res.data)
 			}
-		)
+			)
+			.then(()=>{ 
+				history.push('/dashboard');
+				window.location.reload();
+			})
+			.catch(err => {console.log(err)})
+
 		dispatch({type: 'setUser', payload: response})
 		console.log(response)
 		console.log(user)
