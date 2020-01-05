@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { StateProvider } from './Store.js';
-
+import { CookiesProvider } from 'react-cookie';
 
 const app = (
-	<StateProvider>
-		<App />
-	</ StateProvider>
+	<CookiesProvider>
+		<StateProvider>
+			<App />
+		</ StateProvider>
+	</CookiesProvider>
 )
 
 ReactDOM.render(app, document.getElementById('root'));

@@ -1,10 +1,10 @@
 import React, {useContext, useState, useEffect} from 'react';
+import ProtectedRoute from './routes/ProtectedRoute.js'
 import history from './history'
 import Home from './components/Home';
 import SignIn from './components/SignIn'
-import getRes from './getRes.js';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { store } from './Store'
+import SingUp from './components/SignUp'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Dashboard from './components/Dashboard.js'
 
 function App() {
@@ -15,10 +15,9 @@ function App() {
   return (
 		<BrowserRouter history = {history}>
 			<Switch>
+				<Route path="/" exact component = {Home} />
 				<Route path="/login" exact component={SignIn} />
-				<Route path="/" exact component={Home} />
-				<Route path="/dashboard" exact component={Dashboard} />
-				
+				<ProtectedRoute path="/dashboard" component={Dashboard} />	
 			</Switch>
 		</BrowserRouter>
   );  

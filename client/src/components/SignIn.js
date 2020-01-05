@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import { useCookies } from 'react-cookie';
 import history from '../history';
 import { store } from '../Store.js';
 import Avatar from '@material-ui/core/Avatar';
@@ -55,6 +56,8 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+	const [cookies, setCookie] = useCookies(['_session'])
+
 	const user = useContext(store);
 	const { dispatch } = user;
 	//const [user, setUser] = useState("")
@@ -78,8 +81,8 @@ export default function SignIn() {
 			})
 			.then( res => {
 
-				localStorage.setItem('extremely-sensitive-token', res.data)
-				dispatch({ type: 'setToken', payload: localStorage.getItem('extremely-sensitive-token') })	
+				setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
+				console.log(cookies)
 				return jwt.decode(res.data)
 			}
 			)
