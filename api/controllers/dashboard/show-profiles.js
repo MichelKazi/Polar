@@ -20,7 +20,7 @@ module.exports = {
       where: {
         age: { '>=': this.req.user.agePreference  },
         id: { '!=': this.req.user.id },
-        gender: { contains: this.req.user.preference!=='doesn\'t matter' ? this.req.user.preference : ['male', 'female', 'non-binary']},
+        gender: { in: this.req.user.preference!=='doesn\'t matter' ? [ this.req.user.preference ] : ['male', 'female', 'non-binary']},
         // location: { compare user's location to profilesToRender location somehow }
       },
       sort: 'updatedAt DESC'
