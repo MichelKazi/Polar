@@ -8,12 +8,12 @@ const axios  = require('axios')
 
 
 
-export default function SignIn() {
 
-	const [cookies, setCookie] = useCookies(['_session'])
+export default function LogIn() {
 
 	const user = useContext(store)
 	const { dispatch } = user
+	const [cookies, setCookie] = useCookies(['_session'])
 
 	const handleEmail = (e) => {
 		dispatch({type: 'handleEmail', payload: e.target.value})
