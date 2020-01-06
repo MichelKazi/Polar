@@ -13,7 +13,7 @@ const AppHeader = (props) => {
 		<AppBar position="static">
 			<Toolbar>
 					<Typography variant="h6" color="inherit">
-						Welcome {userStore.state.fullName}!
+						
 					</Typography>
 
 			</Toolbar>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { StateProvider } from './Store.js';
+import { StateProvider } from './components/Store.js';
 import { CookiesProvider } from 'react-cookie';
 
 const app = (

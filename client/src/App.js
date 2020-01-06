@@ -1,28 +1,20 @@
 import React from 'react'
-import AppHeader from './components/AppHeader.js'
-import ProtectedRoute from './routes/ProtectedRoute.js'
-import PublicRoute from './routes/PublicRoute.js'
-import history from './history'
-import Home from './components/Home'
-import LogIn from './components/LogIn.js'
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
-import Profile from './components/Profile'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Dashboard from './components/Dashboard.js'
+import { PublicRoute,	ProtectedRoute } from './routes'
+import history from './components/history'
+import {Dashboard, Home, SignIn, SignUp, Profile}  from './components/pages'
+import { BrowserRouter, Switch } from 'react-router-dom'
 
 function App() {
 
   return (
 			<BrowserRouter history = {history}>
-			<Switch>
-					<Route path="/test" exact component = {LogIn} />
-					<Route path="/" exact component = {Home} />
-					<PublicRoute path="/signup" component={SignUp} />
-					<PublicRoute path="/login" component={SignIn} />
-					<ProtectedRoute path="/profile" component={Profile} />
-					<ProtectedRoute path="/dashboard" component={Dashboard} />	
-			</Switch>
+				<Switch>
+						<PublicRoute path="/" exact component = {Home} />
+						<PublicRoute path="/signup" component={SignUp} />
+						<PublicRoute path="/login" component={SignIn} />
+						<ProtectedRoute path="/profile" component={Profile} />
+						<ProtectedRoute path="/dashboard" component={Dashboard} />	
+				</Switch>
 			</BrowserRouter>
   )  
 }
