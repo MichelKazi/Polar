@@ -1,3 +1,4 @@
+
 const dateFns = require('date-fns');
 
 module.exports = {
@@ -44,6 +45,14 @@ module.exports = {
     location: {
       type: 'json',
       //required: true
+    },
+
+
+    // bio stuff
+
+    bio: {
+      type: 'string',
+      maxLength: 160
     }
   },
 
@@ -86,8 +95,16 @@ module.exports = {
       sub: await newUserRecord.id,
       location: inputs.location
     };
-    User.updateOne({ id: await newUserRecord.id })
+    await User.updateOne({ id: await newUserRecord.id })
 			.set(values);
+
+    const firstBio = await Bios.create({
+      content: inputs.bio
+    });
+
+    await User.addToCollection(newUserRecord.id, 'bios')
+			.members([firstBio.id]);
+
 
     // create a JWT token for the newly minted user:w
     const userId = newUserRecord.id;

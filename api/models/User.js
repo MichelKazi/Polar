@@ -53,6 +53,14 @@ module.exports = {
     },
     location:{
       type: 'json',
+    },
+
+
+    // adding a reference to user bios
+    bios: {
+      collection: 'bios',
+      via: 'owner'
     }
+
   },
 };
