@@ -32,11 +32,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/api/v1/account/logout':				{ action: 'account/logout'  },
   'PUT /api/v1/entrance/login':		{ action: 'entrance/login' },
   'POST /api/v1/entrance/signup':	{ action: 'entrance/signup' },
 
 
+  '/api/v1/account/logout':				{ action: 'account/logout'  },
   'PUT /api/v1/account/update-bio': { action: 'account/update-bio' },
   'POST /api/v1/account/add-image': { action: 'account/add-image' },
 

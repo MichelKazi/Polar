@@ -18,7 +18,7 @@ module.exports = async function (req, res, next) {
             return res.serverError(err);
           },
           invalid: function (err) {
-            console.log(err);
+            sails.log(`Authorization error: ${err}`);
             // if this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
             // send a 401 response letting the user agent know they need to login to
             // access this endpoint.
