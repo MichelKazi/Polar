@@ -1,8 +1,16 @@
 import React from 'react';
-import { Typography, Container, Button, CssBaseline, makeStyles } from '@material-ui/core'
+import { Typography, Container, Button,
+				 CssBaseline, makeStyles } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom';
-
+import {red} from '@material-ui/core/colors'
 const useStyles = makeStyles({
+	root:{
+		backgroundColor: '#000'
+	},
+	container: {
+		height: '100vh',
+		backgroundColor: red[500] 
+	},
   loginBtn: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     border: 0,
@@ -28,7 +36,7 @@ const Home = props => {
 	const classes = useStyles()
 
 	return (
-		<Container maxWidth="sm">
+		<Container maxWidth="sm" className={classes.container}>
 			<CssBaseline />
 			<Button 
 				id="signup-btn-home"

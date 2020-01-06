@@ -1,5 +1,28 @@
 # Polar
 
+## A CRUD Dating App
+
+The project requirements are as follows:
+- Users have to be able to sign up using 
+	- First name
+	- Last name
+	- email
+	- birthday
+- Users need a way to log into their accounts
+- They also need to be able to log out
+- login and sign up links should only be exposed to users that aren't logged in
+- which means you can only see a logout link if you're logged in
+- Users can delete accounts
+
+#### Posts
+I don't necessarily see a reason to have posts on a dating app.  
+However, for the sake of project requirements, I'll be letting user's posts be a list of bios  
+If you've used Tinder, you can see that user's bio updates are actually listed like posts.  
+The most recent "post" or bio is the user's current bio  
+
+How would I implement this?  
+Posts can be contained in a separate model, and I can use waterline collections to add posts to the bio
+
 ## The User model
 A user needs to have a few things upon signup
 - Full name
