@@ -1,4 +1,3 @@
-
 const dateFns = require('date-fns');
 
 module.exports = {
@@ -98,15 +97,21 @@ module.exports = {
     await User.updateOne({ id: await newUserRecord.id })
 			.set(values);
 
-    const firstBio = await Bios.create({
+    sails.log(`Bios: ${sails.models.Bios}`);
+    sails.log(`bios: ${sails.models.bios}`);
+
+    const firstBio = await sails.models.bios.create({
       content: inputs.bio
-    });
+    })
+			.fetch();
 
-    await User.addToCollection(newUserRecord.id, 'bios')
-			.members([firstBio.id]);
+    sails.log(`Bio ${firstBio.id} created for user ${newUserRecord.id}`);
+
+    await User.addToCollection(await newUserRecord.id, 'bios')
+		.members([await firstBio.id]);
 
 
-    // create a JWT token for the newly minted user:w
+		 //create a JWT token for the newly minted user:w
     const userId = newUserRecord.id;
     const token = await sails.helpers.assignJwt.with({ userId });
 

@@ -14,8 +14,6 @@ module.exports = {
 
 
   fn: async function () {
-    sails.log(this.req.user);
-
     const potentialMatches = await User.find({
       where: {
         age: { '>=': this.req.user.agePreference  },
