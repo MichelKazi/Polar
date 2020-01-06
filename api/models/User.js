@@ -59,6 +59,15 @@ module.exports = {
     bios: {
       collection: 'bios',
       via: 'owner'
+    },
+
+    // User's likes and matches
+    likes: {
+      collection: 'user'
+    },
+
+    matches: {
+      collection: 'user'
     }
 
   },
