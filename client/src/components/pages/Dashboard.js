@@ -1,9 +1,10 @@
-import React, {useContext} from 'react';
+import React, {useContext} from 'react'
 import { Button } from '@material-ui/core'
 import { store } from '../Store.js'
-import { useCookies } from 'react-cookie';
-import history from '../history';
+import { useCookies } from 'react-cookie'
+import history from '../history'
 import LogOutButton from '../LogOutButton.js'
+import AppHeader from '../layouts/AppHeader.js'
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
@@ -12,9 +13,9 @@ const Dashboard = props => {
 
 	return (
 		<div>
-			<LogOutButton />
+			<AppHeader />
 		</div>
-	);
-};
+	)
+}
 
-export default Dashboard;
+export default Dashboard
