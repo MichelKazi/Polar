@@ -55,14 +55,14 @@ export default function SignIn() {
 	const user = useContext(store);
 	const { dispatch } = user;
 	//const [user, setUser] = useState("")
-	//const [email, setEmail] = useState("")
-	//const [password, setPassword] = useState("")
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
 
 	const handleEmail = (e) => {
-		dispatch({type: 'handleEmail', payload: e.target.value})
+		setEmail(e.target.value)
 	} 
 	const handlePassword = (e) => {
-		dispatch({type: 'handlePassword', payload: e.target.value})
+		setPassword(e.target.value)
 	}
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -70,8 +70,8 @@ export default function SignIn() {
 
 		const response = await axios
 			.put('/api/v1/entrance/login', {
-				email: user.state.email,
-				password: user.state.password
+				email: email,
+				password: password
 			})
 			.then( res => {
 
