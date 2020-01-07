@@ -12,6 +12,7 @@ module.exports.policies = {
 
   '*': 'isAuthenticated',
 
+  'account/logout': true,
   'entrance/signup': true,
   'entrance/login': true,
   /***************************************************************************

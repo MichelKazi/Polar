@@ -45,6 +45,7 @@ module.exports = {
 
     const token = await sails.helpers.assignJwt.with({ userId });
 
+    sails.log(this.req.user);
     this.res.send(await token);
     //this.res.send(await R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord));
   }

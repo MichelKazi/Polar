@@ -19,8 +19,11 @@ module.exports = {
 
 
   fn: async function () {
+    console.log(this.req.user);
 
-    delete this.req.session.userId;
+
+    delete this.req.user;
+    console.log(this.req.user);
 
     if (!this.req.wantsJSON) {
       throw {redirect: '/login'};
