@@ -74,23 +74,19 @@ export default function SignIn() {
 				password: password
 			})
 			.then( res => {
-
-				setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
-				console.log(cookies)
-				return jwt.decode(res.data)
-			}
+					setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
+					const user = jwt.decode(res.data)
+					return dispatch({type: 'setUser', payload: user})
+				}
 			)
-			.then(()=>{ 
+			.then(_=>{
 				history.push('/dashboard');
 				window.location.reload();
 			})
 			.catch(err => {console.log(err)})
 
-		dispatch({type: 'setUser', payload: response})
-		console.log(response)
-		console.log(user)
-		
 	} 
+
 
   return (
     <Container component="main" maxWidth="xs">

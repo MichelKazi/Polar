@@ -27,6 +27,7 @@ const LogOutButton = props => {
 			})
 			.catch(err => {console.log(err)})
 
+		console.log('Logging user out')
 		dispatch({type: 'setUser', payload: null})
 		console.log(user)
 		

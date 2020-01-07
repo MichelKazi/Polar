@@ -2,8 +2,6 @@
 import React, {createContext, useReducer} from 'react';
 
 const userState = {
-	id: 0,
-	fullName: null
 } 
 
 const store = createContext(userState);
@@ -13,10 +11,10 @@ const StateProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
 			case 'setUser':
-				delete state.email;
-				delete state.password;
-				return {...state, ...action.payload}
+				console.log('User is being set')
+				return {...state,  ...action.payload}
 			case 'setToken':
+				console.log('Token is being set')
 				return {...state, token: action.payload}
       default:
         return {...state}
