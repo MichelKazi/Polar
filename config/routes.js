@@ -41,4 +41,5 @@ module.exports.routes = {
   'POST /api/v1/account/add-image': { action: 'account/add-image' },
 
   'GET /api/v1/dashboard':				{ action: 'dashboard/show-profiles' },
+  'PUT /api/v1/dashboard/like-user': {action: 'dashboard/like-user'}
 };
