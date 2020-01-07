@@ -44,9 +44,13 @@ const AppHeader = (props) => {
     setOpen(false);
   };
 
+	console.log(userStore)
+
 	return(
 		<AppBar position="static">
 			<Toolbar>
+				<Typography>
+				</Typography>
 				<Button
 					endIcon={<ExitToAppIcon/>}
 					color='inherit'
