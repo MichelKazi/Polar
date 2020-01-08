@@ -9,9 +9,17 @@ const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
 const Dashboard = props => {
+	const [cookies, setCookies, removeCookie] = useCookies('_session')
+	const config = {
+		headers: {'Authorization': 'Bearer ' + cookies._session}
+	}
+
+	const getProfiles = () => {
+		axios.get('/api/v1/dashboard', )
+	}
+
 	const userStore = useContext(store)
 	const { dispatch } = userStore
-	const [cookies, setCookies, removeCookie] = useCookies('_session')
 	console.log(`At this point, user should be defined in the global state: ${userStore}`)
 	console.log(userStore)
 

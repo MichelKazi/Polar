@@ -8,16 +8,20 @@ import { makeStyles, Grid, AppBar,
 import { store } from '../Store'
 import LogOutButton from '../LogOutButton.js'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { useCookies } from 'react-cookie';
+import { useHistory, Redirect } from 'react-router-dom'
+const jwt = require('jsonwebtoken')
+
 
 const useStyles = makeStyles(theme => ({
 
 }));
 
 const AppHeader = (props) => {
-
+	const [cookies, setCookies] = useCookies('_session')
 	const userStore = useContext(store)
-	console.log(userStore)
   const [open, setOpen] = React.useState(false);
+	const [user, setUser] = React.useState(jwt.decode(cookies._session));
 	const classes=useStyles()
 
  const handleOpen = () => {
@@ -28,13 +32,12 @@ const AppHeader = (props) => {
     setOpen(false);
   };
 
-	console.log(userStore)
 
 	return(
 		<AppBar position="static">
 			<Toolbar>
 				<Typography variant='h5'>
-					Hi
+					Hi {user.fullName}
 				</Typography>
 				<Grid item xs></Grid>
 					<Button
