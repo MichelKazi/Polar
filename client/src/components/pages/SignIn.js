@@ -6,7 +6,8 @@ import {
 	Typography, makeStyles, Container
 	} from '@material-ui/core'
 import { useCookies } from 'react-cookie';
-import history from '../history';
+import { useHistory, Redirect } from 'react-router-dom'
+//import history from '../history';
 import { store } from '../Store.js';
 
 const jwt = require('jsonwebtoken');
@@ -48,6 +49,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function SignIn() {
+	const history = useHistory()
   const classes = useStyles();
 
 	const [cookies, setCookie] = useCookies(['_session'])
@@ -81,7 +83,7 @@ export default function SignIn() {
 			)
 			.then(_=>{
 				history.push('/dashboard');
-				window.location.reload();
+				//window.location.reload(false);
 			})
 			.catch(err => {console.log(err)})
 
