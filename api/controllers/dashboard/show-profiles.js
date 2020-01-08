@@ -28,7 +28,7 @@ module.exports = {
       return R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], profile);
     });
 
-    this.res.send(profilesToSend);
+    this.res.send(await profilesToSend);
 
 
     // All done.

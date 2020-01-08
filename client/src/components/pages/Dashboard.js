@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import { Button } from '@material-ui/core'
+import React, {useEffect, useContext} from 'react'
+import { makeStyles, Grid, Card, CardActions, CardContent, Typography, Button } from '@material-ui/core'
 import { store } from '../Store.js'
 import { useCookies } from 'react-cookie'
 import history from '../history'
@@ -9,14 +9,18 @@ const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
 const Dashboard = props => {
+	const [profiles, setProfiles] = React.useState([])
 	const [cookies, setCookies, removeCookie] = useCookies('_session')
-	const config = {
-		headers: {'Authorization': 'Bearer ' + cookies._session}
-	}
-
-	const getProfiles = () => {
-		axios.get('/api/v1/dashboard', )
-	}
+	
+	useEffect(()=>{
+		axios.get(
+			'/api/v1/dashboard',
+			{headers: {'Authorization': `Bearer ${cookies._session}`}}
+		)
+			.then(res => setProfiles(res.data))
+	}, [cookies._session])
+	
+	console.log(profiles)
 
 	const userStore = useContext(store)
 	const { dispatch } = userStore
@@ -26,6 +30,23 @@ const Dashboard = props => {
 	return (
 		<div>
 			<AppHeader />
+			{profiles.map((profile, key) => {
+				return (
+					<Card key={key}>
+						<CardContent>
+							<Typography variant='h5'>
+								{profile.fullName}	
+							</Typography>
+							<br/>
+							<img src={profile.image1} width={500}/>
+						</CardContent>
+						<CardActions>
+							<Button variant='contained' color='primary'>I dislike this person</Button>
+							<Button variant='contained' color='green'>I like this person</Button>
+						</CardActions>
+					</Card>
+				)
+			})}
 		</div>
 	)
 }
