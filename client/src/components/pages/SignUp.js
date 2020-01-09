@@ -1,18 +1,16 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Dropzone from 'react-dropzone'
 import { Avatar, Button, CssBaseline,
-				TextField, FormControlLabel, Checkbox,
+				TextField, FormControlLabel, 
 				Link, Grid, Box, Typography,
 				makeStyles, Container, RadioGroup, Radio,
 				FormControl, FormLabel, Slider, withStyles
 				} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useCookies } from 'react-cookie';
-import { useHistory, Redirect } from 'react-router-dom'
+import { useHistory, } from 'react-router-dom'
 const jwt = require('jsonwebtoken')
 const axios = require('axios')
-const dotenv = require('dotenv');
-dotenv.config()
 
 
 function Copyright() {
@@ -90,13 +88,18 @@ export default function SignUp() {
 
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-	const [dob, setDob] = useState("")
+	const [dob, setDob] = useState("1998/10/03")
 	const [firstName, setFirstName] = useState("")
 	const [lastName, setLastName] = useState("")
 	const [gender, setGender] = useState("")
-	const [genderPref, setGenderPref] = useState("")
+	const [genderPref, setGenderPref] = useState("doesn't matter")
 	const [agePref, setAgePref] = useState("")
+	const [avatar, setAvatar] = useState(null)
+	const [bio, setBio] = useState("")
 
+	const handleBio = (e) => {
+		setBio(e.target.value)
+	}
 	const handlePrev = () => {
 		setStep(--step)
 	}
@@ -133,7 +136,7 @@ export default function SignUp() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		const response = await axios
+		await axios
 			.post('/api/v1/entrance/signup', {
 				fullName: `${firstName} ${lastName}`,
 				email: email,
@@ -141,11 +144,11 @@ export default function SignUp() {
 				dob: dob.split('-').join('/'),
 				gender: gender,
 				preference: genderPref,
-				agePreference: agePref
+				agePreference: agePref,
+				bio
 			})
 			.then( res => {
 					setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
-					const user = jwt.decode(res.data)
 				}
 			)
 			.then(_=>{
@@ -237,7 +240,6 @@ export default function SignUp() {
 									onChange={handleDob}
 									fullWidth
 									defaultValue='1969-04-20'
-									value='1969-04-20'
 									id="date"
 									label="Birthday"
 									type="date"
@@ -274,7 +276,7 @@ export default function SignUp() {
 										<RadioGroup aria-label="gender" row  name="gender1" value={genderPref} onChange={handleGenderPref}>
 										<FormControlLabel value="female" control={<Radio />} label="Women" />
 											<FormControlLabel value="male" control={<Radio />} label="Men" />
-											<FormControlLabel value="doesn't-matter" control={<Radio />} label="It doesn't matter" />
+											<FormControlLabel value="doesn't matter" control={<Radio />} label="It doesn't matter" />
 										</RadioGroup>
 								</FormControl>
 								</Grid>
@@ -319,18 +321,20 @@ export default function SignUp() {
 						}
 						{step===5 &&
 							<>
-								<Typography>PUT AMAZON UPLOAD COMP HERE FAM</Typography>
-
-									<Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-										{({getRootProps, getInputProps}) => (
-											<section>
-												<div {...getRootProps()}>
-													<input {...getInputProps()} />
-													<p>Drag 'n' drop some files here, or click to select files</p>
-												</div>
-											</section>
-										)}
-									</Dropzone>
+								<Typography variant='h6'>Tell us about yourself</Typography>
+								
+									<TextField
+										onChange={handleBio}
+										multiline
+										rows={4}
+										name="firstName"
+										variant="outlined"
+										required
+										fullWidth
+										id="bio"
+										label="Bio"
+										autoFocus
+									/>
 
 								<Grid item xs={12}>
 								<Button
@@ -344,6 +348,14 @@ export default function SignUp() {
 									Sign Up
 								</Button>
 								</Grid>
+							<Grid item xs={2}>
+								<Button onClick={handlePrev}>
+									back
+								</Button>
+							</Grid>
+							<Grid item xs={8}/>
+							<Grid item xs={2}>
+							</Grid>
 							</>
 
 						}
