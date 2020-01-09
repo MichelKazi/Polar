@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import React, {useContext, useState} from 'react';
+import { Avatar, Button, CssBaseline,
+				TextField, FormControlLabel, Checkbox,
+				Link, Grid, Box, Typography,
+				makeStyles, Container, RadioGroup, Radio,
+				FormControl, FormLabel, Slider, withStyles
+				} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { useCookies } from 'react-cookie';
+import { useHistory, Redirect } from 'react-router-dom'
+const jwt = require('jsonwebtoken')
 const axios = require('axios')
 
 
@@ -27,6 +24,38 @@ function Copyright() {
     </Typography>
   );
 }
+
+
+const PrettoSlider = withStyles({
+  root: {
+    color: '#52af77',
+    height: 8,
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: '#fff',
+    border: '2px solid currentColor',
+    marginTop: -8,
+    marginLeft: -12,
+    '&:focus,&:hover,&$active': {
+      boxShadow: 'inherit',
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: 'calc(-50% + 4px)',
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 8,
+    borderRadius: 4,
+  },
+})(Slider);
+
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -49,37 +78,71 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp() {
+	const history = useHistory()
   const classes = useStyles();
 
+	const [cookies, setCookie] = useCookies(['_session'])
 
-	const [user, setUser] = useState("")
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+	const [dob, setDob] = useState("")
+	const [firstName, setFirstName] = useState("")
+	const [lastName, setLastName] = useState("")
+	const [gender, setGender] = useState("")
+	const [genderPref, setGenderPref] = useState("")
+	const [agePref, setAgePref] = useState("")
 
 	const handleEmail = (e) => {
 		setEmail(e.target.value)
 	} 
-
 	const handlePassword = (e) => {
 		setPassword(e.target.value)
 	}
+	const handleGender = (e) => {
+		setGender(e.target.value)
+	}
+	const handleDob = (e) => {
+		console.log(e.target.value.split('-').join('/'))
+		setDob(e.target.value.split('-').join('/'))
 
-	const handleSubmit = (e) => {
+	}
+	const handleFirstName = (e) => {
+		setFirstName(e.target.value)
+	}
+	const handleLastName = (e) => {
+		setLastName(e.target.value)
+	}
+	const handleGenderPref = (e) => {
+		setGenderPref(e.target.value)
+	}
+	const handleAgePref = (e, newVal) => {
+		setAgePref(newVal)
+	}
+
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		axios
-			.put('/api/v1/entrance/login', {
+		const response = await axios
+			.post('/api/v1/entrance/signup', {
+				fullName: `${firstName} ${lastName}`,
 				email: email,
-				password: password 
+				password: password,
+				gender: gender,
+				preference: genderPref,
+				agePreference: agePref
 			})
 			.then( res => {
-				setUser(res.data)
-			}
-		)
-		console.log(user)
-		
-	} 
+					setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
+					const user = jwt.decode(res.data)
+				}
+			)
+			.then(_=>{
+				history.push('/dashboard');
+				//window.location.reload(false);
+			})
+			.catch(err => {console.log(err)})
 
+	} 
 
   return (
     <Container component="main" maxWidth="xs">
@@ -95,6 +158,7 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+								onChange={handleFirstName}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -107,6 +171,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+								onChange={handleLastName}
                 variant="outlined"
                 required
                 fullWidth
@@ -129,6 +194,15 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
+							<TextField
+								onChange={handleDob}
+								fullWidth
+								id="date"
+								label="Birthday"
+								type="date"
+							/>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
 								onChange={handlePassword}
                 variant="outlined"
@@ -141,30 +215,44 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-						<Grid item xs={12} >
-							 <textfield
-									id="date"
-									label="birthday"
-									type="date"
-									defaultvalue="2017-05-24"
-									classname={classes.textfield}
-									inputlabelprops={{
-										shrink: true,
-									}}
-								/>
-						</ Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
+							<FormControl component="fieldset" className={classes.formControl}>
+								<FormLabel component="legend">Your Gender</FormLabel>
+								<RadioGroup aria-label="gender" row  name="gender1" value={gender} onChange={handleGender}>
+										<FormControlLabel value="female" control={<Radio />} label="Female" />
+										<FormControlLabel value="male" control={<Radio />} label="Male" />
+										<FormControlLabel value="non-binary" control={<Radio />} label="Non-binary" />
+								</RadioGroup>
+							</FormControl>
             </Grid>
+            <Grid item xs={12}>
+							<Typography gutterBottom>What's your age preference?</Typography>
+							<PrettoSlider 
+								min={18}
+								max={120}
+								valueLabelDisplay='auto'
+								defaultValue={18} 
+								onChange={handleAgePref} 
+								aria-labelledby="continuous-slider" 
+							/>
+            </Grid>
+						<Grid item xs={12}>
+							<FormControl component="fieldset" className={classes.formControl}>
+								<FormLabel component="legend">What are you interested in?</FormLabel>
+									<RadioGroup aria-label="gender" row  name="gender1" value={genderPref} onChange={handleGenderPref}>
+									<FormControlLabel value="female" control={<Radio />} label="Women" />
+										<FormControlLabel value="male" control={<Radio />} label="Men" />
+										<FormControlLabel value="doesn't-matter" control={<Radio />} label="It doesn't matter" />
+									</RadioGroup>
+							</FormControl>
+						</Grid>
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
+						onClick={handleSubmit}
             className={classes.submit}
           >
             Sign Up

@@ -11,10 +11,10 @@ const useStyles = makeStyles({
 		position: 'absolute',
 		left: '50%',
 		top: '50%',
-		marginTop: '-30vh',
-		marginLeft: '-35vw',
-		width: '70vw',
-		height: '60vh',
+		marginTop: '-40vh',
+		marginLeft: '-40vw',
+		width: '80vw',
+		height: '80vh',
 		backgroundColor: 'yellow'
 	},
   loginBtn: {
@@ -23,6 +23,16 @@ const useStyles = makeStyles({
   signupBtn: {
 
   },
+	logo: {
+		position: 'absolute',
+		left: '57.5%',
+		top: '15%',
+		zIndex: 1
+	},
+	yolo:{
+		height: '80vh',
+		backgroundColor: '#ccc'
+	}
 });
 
 
@@ -32,39 +42,59 @@ const Home = props => {
 	return (
 		<React.Fragment>
 			<CssBaseline />
+			<img src='https://i.imgur.com/hDH261n.gif' width={450} alt='logo' className={classes.logo}/>
 			<Grid container 
-				justify='center'
-				alignItems='center'
+				alignItems='flex-end'
 				className={classes.container}
 			>
-				
-			<Grid item xs={3}>
-				<Button 
-					id="signup-btn-home"
-					variant="contained" 
-					color="secondary"
-					component={RouterLink}
-					to="/signup"
+				<Grid 
+					id="leftSide"	
+					item 
+					container 
+					className={classes.yolo} 
+					xs={7}
+					justify="center"
 				>
-					<Typography variant="h6">
-						SIGN UP
-					</Typography>
-				</Button>
-			</Grid>
-					<Grid item xs={3}>
-				<Button 
-					id="login-btn-home"
-					variant="contained" 
-					color="secondary"
-					component={RouterLink}
-					to="/login"
-				>
-					<Typography variant="h6">
-						LOG IN
-					</Typography>
-				</Button>
-
+					<Grid item xs={12}>
+						<Typography variant='h1'>
+							POLAR
+						</Typography>
+						<Typography variant='p'>
+							A dating app for exact opposites.
+						</Typography>
 					</Grid>
+					<Grid item xs={12}>
+					</Grid>
+					
+					<Grid item xs={2}>
+					<Button 
+						id="signup-btn-home"
+						variant="contained" 
+						color="secondary"
+						component={RouterLink}
+						to="/signup"
+					>
+						<Typography variant="h6">
+							SIGN UP
+						</Typography>
+					</Button>
+					</Grid>
+						<Grid item xs={2}>
+							<Button 
+								id="login-btn-home"
+								variant="contained" 
+								color="secondary"
+								component={RouterLink}
+								to="/login"
+							>
+								<Typography variant="h6">
+									LOG IN
+								</Typography>
+							</Button>
+						</Grid>
+				
+				</Grid>
+
 			</Grid>
 		</React.Fragment>
 	)
