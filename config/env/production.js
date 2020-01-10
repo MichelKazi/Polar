@@ -232,7 +232,7 @@ module.exports = {
     ***************************************************************************/
 		 onlyAllowOrigins: [
 			 'https://example.com',
-			 'http://polardating.herokuapp.com/',
+			 'http://polardating.herokuapp.com',
 			 'https://staging.example.com',
 		 ],
 
