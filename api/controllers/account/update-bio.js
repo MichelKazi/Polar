@@ -35,7 +35,7 @@ module.exports = {
 			.members([await newBio.id]);
     // All done.
 
-    this.res.send(newBio.content);
+    this.res.send(newBio);
 
   }
 
