@@ -1,5 +1,6 @@
 import React from 'react';
-import { Typography, Grid, Button,
+import Logo from '../../logo.png'
+import { Container, Typography, Grid, Button,
 	CssBaseline, makeStyles } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom';
 import {red} from '@material-ui/core/colors'
@@ -15,7 +16,6 @@ const useStyles = makeStyles({
 		marginLeft: '-40vw',
 		width: '80vw',
 		height: '80vh',
-		backgroundColor: 'yellow'
 	},
 	loginBtn: {
 
@@ -25,13 +25,15 @@ const useStyles = makeStyles({
 	},
 	logo: {
 		position: 'absolute',
-		left: '57.5%',
-		top: '15%',
-		zIndex: 1
+		left: '38%',
+		marginRight: '-225'
 	},
 	yolo:{
 		height: '80vh',
-		backgroundColor: '#ccc'
+	},
+	buttons:{
+		display: 'block',
+		margin: '0 auto'
 	}
 });
 
@@ -42,60 +44,51 @@ const Home = props => {
 	return (
 		<React.Fragment>
 			<CssBaseline />
-			<img src='https://i.imgur.com/hDH261n.gif' width={450} alt='logo' className={classes.logo}/>
-			<Grid container 
-				alignItems='flex-end'
-				className={classes.container}
-			>
-				<Grid 
-					id="leftSide"	
-					item 
-					container 
-					className={classes.yolo} 
-					xs={7}
-					justify="center"
-				>
-					<Grid item xs={12}>
-						<Typography variant='h1'>
-							POLAR
-						</Typography>
-						<Typography variant='p'>
-							A dating app for exact opposites.
-						</Typography>
-					</Grid>
-					<Grid item xs={12}>
-					</Grid>
+			<Typography align='center' variant='h1'>
+				POLAR
+			</Typography>
+			<Typography  align='center' variant='body1'>
+				A dating app for exact opposites.
+			</Typography>
+			<img src={Logo} width={450} alt='logo' className={classes.logo}/>
+			<div className={classes.buttons}>
 
-					<Grid item xs={2}>
-						<Button 
-							id="signup-btn-home"
-							variant="contained" 
-							color="secondary"
-							component={RouterLink}
-							to="/signup"
+				<Container>
+				
+					<Grid justify='center' container>
+						<Grid item xs={2}>
+							<Button 
+								id="signup-btn-home"
+								variant="contained" 
+								color="secondary"
+								component={RouterLink}
+								to="/signup"
+							>
+								<Typography align='center' variant="h6">
+									SIGN UP
+								</Typography>
+							</Button>
+						</Grid>
+						<Grid item xs={2}
+							alignItems='center'
+							alignContent='center'
+
 						>
-							<Typography variant="h6">
-								SIGN UP
-							</Typography>
-						</Button>
+							<Button 
+								id="login-btn-home"
+								variant="contained" 
+								color="secondary"
+								component={RouterLink}
+								to="/login"
+							>
+								<Typography  align='center'variant="h6">
+									LOG IN
+								</Typography>
+							</Button>
+						</Grid>
 					</Grid>
-					<Grid item xs={2}>
-						<Button 
-							id="login-btn-home"
-							variant="contained" 
-							color="secondary"
-							component={RouterLink}
-							to="/login"
-						>
-							<Typography variant="h6">
-								LOG IN
-							</Typography>
-						</Button>
-					</Grid>
-
-				</Grid>
-
-			</Grid>
+				</Container>
+			</div>
 		</React.Fragment>
 	)
 };

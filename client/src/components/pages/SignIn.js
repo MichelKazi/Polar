@@ -71,7 +71,7 @@ export default function SignIn() {
 		console.log(user.state)
 
 		const response = await axios
-			.put('/api/v1/entrance/login', {
+			.post('/api/v1/entrance/login', {
 				email: email,
 				password: password
 			})

@@ -12,6 +12,7 @@ import { useCookies } from 'react-cookie';
 import { useHistory, Redirect } from 'react-router-dom'
 import logo from '../../logo.png'
 const jwt = require('jsonwebtoken')
+const randomColor = require('randomcolor')
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 		cursor: 'pointer'
 	},
 	toolbar:{
-		backgroundColor:'#666'
+		backgroundColor: randomColor({luminosity: 'dark'})
 	}
 }));
 

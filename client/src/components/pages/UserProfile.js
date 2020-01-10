@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom'
 import {useCookies} from 'react-cookie'
 import { AppHeader } from '../layouts'
 import { Container, makeStyles, Grid, AppBar,
@@ -24,7 +25,7 @@ const useStyles = makeStyles({
 	},
 	editProfilePic: {
 		position: 'absolute',
-		right: '5%',
+		left: '5%',
 		bottom: '5%',
 	},
 	bio: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles({
 
 const Profile = props => {
 
+	const { id } = useParams()
 	const [cookies, setCookies] = useCookies('_session')
 	const [user, setUser] = useState(jwt.decode(cookies._session))
 	const [bio, setBio] = useState()
@@ -45,7 +47,8 @@ const Profile = props => {
 	console.log(user.bios)
 
 	useEffect(()=>{
-		axios.get(`/user/${user.id}`,
+
+		axios.get(`/user/${id}`,
 			{headers: {'Authorization': `Bearer ${cookies._session}`}}
 		)
 			.then(res => {
@@ -65,9 +68,6 @@ const Profile = props => {
 				<Paper elevation={3} className={classes.card}>
 					<div className={classes.profilePic}>
 						<img src={user.image1} width={400} alt="profile" />
-						<Fab className={classes.editProfilePic} color='secondary' size="small">
-							<EditIcon />
-						</Fab>
 					</div>
 					<Grid container spacing={1}>
 						<Grid container item xs={12}>
@@ -79,6 +79,15 @@ const Profile = props => {
 					<Typography className={classes.bio} variant='body'>{user.bios[0] && `"${user.bios[0].content}"`}</Typography>
 					<Divider/>
 					<Typography variant='h6'>Recent activity</Typography>
+					<Grid className={classes.posts} container>
+						<Typography variant='h4'>Recent Activity</Typography>
+						{user.bios.map(bio=>(
+							<Grid item xs={12}>
+								<p>{bio.content}</p>
+							</Grid>
+						))
+						}
+					</Grid>
 				</Paper>
 			</Grid>
 

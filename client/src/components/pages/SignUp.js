@@ -152,7 +152,7 @@ export default function SignUp() {
 			}
 			)
 			.then(_=>{
-				history.push('/dashboard');
+				history.push('/profile');
 				//window.location.reload(false);
 			})
 			.catch(err => {console.log(err)})

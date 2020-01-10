@@ -1,12 +1,42 @@
 import React, {useEffect, useContext} from 'react'
-import { makeStyles, Grid, Card, CardActions, CardContent, Typography, Button } from '@material-ui/core'
+import { CssBaseline, makeStyles, Grid, Container, Typography, Button } from '@material-ui/core'
 import { store } from '../Store.js'
 import { useCookies } from 'react-cookie'
 import history from '../history'
 import LogOutButton from '../LogOutButton.js'
 import AppHeader from '../layouts/AppHeader.js'
+const randomColor = require('randomcolor')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
+
+const useStyles = makeStyles({
+	root: {
+		scrollSnapType: 'y mandatory'
+	},
+
+	profile:{
+		scrollSnapAlign: 'start',
+		textAlign: 'center',
+		height: '100vh',
+	},
+	photo: {
+		width: 500,
+		margin: '0 auto',
+		position: 'relative'
+	},
+	like: {
+		position: 'absolute',
+		left: '0%'
+	},
+	dislike: {
+		position: 'absolute',
+		right: '0%'
+	},
+	name: {
+		textAlign: 'center'
+	}
+
+})
 
 const Dashboard = props => {
 	const [profiles, setProfiles] = React.useState([])
@@ -24,33 +54,35 @@ const Dashboard = props => {
 
 	const userStore = useContext(store)
 	const { dispatch } = userStore
-	console.log(`At this point, user should be defined in the global state: ${userStore}`)
-	console.log(userStore)
+	const classes = useStyles()
+
 
 	return (
-		<div>
+		<div className={classes.root}>
+			<CssBaseline/>
 			<AppHeader />
 			{profiles.map((profile, key) => {
 				return (
-					<Card key={key}>
-						<CardContent>
-							<Typography variant='h5'>
+					<Container maxWidth={false} className={classes.profile} key={key} style={{backgroundColor: randomColor({luminosity: 'light'})}}>
+						<div className={classes.name}>
+							<Typography variant='h2'>
 								{profile.fullName}	
 							</Typography>
-							<Typography variant='h6'>
+							<Typography variant='h4'>
 								{profile.age}
 							</Typography>
-							<br/>
-							<img src={profile.image1} width={500}/>
-								<Typography variant='subtitle1'>
-								{profile.bios[0] && profile.bios.reverse()[0].content}
-								</Typography>
-						</CardContent>
-						<CardActions>
-							<Button variant='contained' color='primary'>I dislike this person</Button>
-							<Button variant='contained' color='green'>I like this person</Button>
-						</CardActions>
-					</Card>
+						</div>
+						<br/>
+						<div className={classes.photo}>
+							<img className={classes.photo}src={profile.image1} width={500} alt=""/>
+							<Button className={classes.dislike}>I dislike this person</Button>
+							<Button className={classes.like}>I like this person</Button>
+
+						</div>
+						<Typography variant='subtitle1'>
+							{profile.bios[0] && profile.bios.reverse()[0].content}
+						</Typography>
+					</Container>
 				)
 			})}
 		</div>
