@@ -37,8 +37,14 @@ const Dashboard = props => {
 							<Typography variant='h5'>
 								{profile.fullName}	
 							</Typography>
+							<Typography variant='h6'>
+								{profile.age}
+							</Typography>
 							<br/>
 							<img src={profile.image1} width={500}/>
+								<Typography variant='subtitle1'>
+								{profile.bios[0] && profile.bios.reverse()[0].content}
+								</Typography>
 						</CardContent>
 						<CardActions>
 							<Button variant='contained' color='primary'>I dislike this person</Button>

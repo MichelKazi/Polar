@@ -10,14 +10,22 @@ import LogOutButton from '../LogOutButton.js'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useCookies } from 'react-cookie';
 import { useHistory, Redirect } from 'react-router-dom'
+import logo from '../../logo.png'
 const jwt = require('jsonwebtoken')
 
 
 const useStyles = makeStyles(theme => ({
 
+	clickable:{
+		cursor: 'pointer'
+	},
+	toolbar:{
+		backgroundColor:'#666'
+	}
 }));
 
 const AppHeader = (props) => {
+	const history = useHistory()
 	const [cookies, setCookies] = useCookies('_session')
 	const userStore = useContext(store)
   const [open, setOpen] = React.useState(false);
@@ -35,10 +43,12 @@ const AppHeader = (props) => {
 
 	return(
 		<AppBar position="static">
-			<Toolbar>
-				<Typography variant='h5'>
+			<Toolbar className={classes.toolbar}>
+				<Typography className={classes.clickable} onClick={()=>{history.push('/profile')}}variant='h5'>
 					Hi {user.fullName}
 				</Typography>
+				<Grid item xs></Grid>
+				<img src={logo} alt='logo' width={50} onClick={()=>{history.push('/dashboard')}}/>
 				<Grid item xs></Grid>
 					<Button
 					endIcon={<ExitToAppIcon/>}
