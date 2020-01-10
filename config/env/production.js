@@ -127,7 +127,7 @@ module.exports = {
     ***************************************************************************/
     cors: {
 			 allowOrigins: [
-				 'http://polardating.herokuapp.com/',
+				 'http://polardating.herokuapp.com',
 				 'http://localhost:3000',
 				 'https://example.com',
 			 ]
