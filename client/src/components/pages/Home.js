@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Grid, Button,
-				 CssBaseline, makeStyles } from '@material-ui/core'
+	CssBaseline, makeStyles } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom';
 import {red} from '@material-ui/core/colors'
 const useStyles = makeStyles({
@@ -17,12 +17,12 @@ const useStyles = makeStyles({
 		height: '80vh',
 		backgroundColor: 'yellow'
 	},
-  loginBtn: {
+	loginBtn: {
 
-  },
-  signupBtn: {
+	},
+	signupBtn: {
 
-  },
+	},
 	logo: {
 		position: 'absolute',
 		left: '57.5%',
@@ -65,34 +65,34 @@ const Home = props => {
 					</Grid>
 					<Grid item xs={12}>
 					</Grid>
-					
+
 					<Grid item xs={2}>
-					<Button 
-						id="signup-btn-home"
-						variant="contained" 
-						color="secondary"
-						component={RouterLink}
-						to="/signup"
-					>
-						<Typography variant="h6">
-							SIGN UP
-						</Typography>
-					</Button>
+						<Button 
+							id="signup-btn-home"
+							variant="contained" 
+							color="secondary"
+							component={RouterLink}
+							to="/signup"
+						>
+							<Typography variant="h6">
+								SIGN UP
+							</Typography>
+						</Button>
 					</Grid>
-						<Grid item xs={2}>
-							<Button 
-								id="login-btn-home"
-								variant="contained" 
-								color="secondary"
-								component={RouterLink}
-								to="/login"
-							>
-								<Typography variant="h6">
-									LOG IN
-								</Typography>
-							</Button>
-						</Grid>
-				
+					<Grid item xs={2}>
+						<Button 
+							id="login-btn-home"
+							variant="contained" 
+							color="secondary"
+							component={RouterLink}
+							to="/login"
+						>
+							<Typography variant="h6">
+								LOG IN
+							</Typography>
+						</Button>
+					</Grid>
+
 				</Grid>
 
 			</Grid>

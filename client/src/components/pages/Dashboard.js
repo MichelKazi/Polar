@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken')
 const Dashboard = props => {
 	const [profiles, setProfiles] = React.useState([])
 	const [cookies, setCookies, removeCookie] = useCookies('_session')
-	
+
 	useEffect(()=>{
 		axios.get(
 			'/api/v1/dashboard',
@@ -19,7 +19,7 @@ const Dashboard = props => {
 		)
 			.then(res => setProfiles(res.data))
 	}, [cookies._session])
-	
+
 	console.log(profiles)
 
 	const userStore = useContext(store)

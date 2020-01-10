@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import Dropzone from 'react-dropzone'
 import { Avatar, Button, CssBaseline,
-				TextField, FormControlLabel, 
-				Link, Grid, Box, Typography,
-				makeStyles, Container, RadioGroup, Radio,
-				FormControl, FormLabel, Slider, withStyles
-				} from '@material-ui/core'
+	TextField, FormControlLabel, 
+	Link, Grid, Box, Typography,
+	makeStyles, Container, RadioGroup, Radio,
+	FormControl, FormLabel, Slider, withStyles
+} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { useCookies } from 'react-cookie';
 import { useHistory, } from 'react-router-dom'
@@ -14,73 +14,73 @@ const axios = require('axios')
 
 
 function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://github.com/MichelKazi/Polar">
-        Polar
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+	return (
+		<Typography variant="body2" color="textSecondary" align="center">
+			{'Copyright © '}
+			<Link color="inherit" href="https://github.com/MichelKazi/Polar">
+				Polar
+			</Link>{' '}
+			{new Date().getFullYear()}
+			{'.'}
+		</Typography>
+	);
 }
 
 
 const PrettoSlider = withStyles({
-  root: {
-    color: '#52af77',
-    height: 8,
-  },
-  thumb: {
-    height: 24,
-    width: 24,
-    backgroundColor: '#fff',
-    border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus,&:hover,&$active': {
-      boxShadow: 'inherit',
-    },
-  },
-  active: {},
-  valueLabel: {
-    left: 'calc(-50% + 4px)',
-  },
-  track: {
-    height: 8,
-    borderRadius: 4,
-  },
-  rail: {
-    height: 8,
-    borderRadius: 4,
-  },
+	root: {
+		color: '#52af77',
+		height: 8,
+	},
+	thumb: {
+		height: 24,
+		width: 24,
+		backgroundColor: '#fff',
+		border: '2px solid currentColor',
+		marginTop: -8,
+		marginLeft: -12,
+		'&:focus,&:hover,&$active': {
+			boxShadow: 'inherit',
+		},
+	},
+	active: {},
+	valueLabel: {
+		left: 'calc(-50% + 4px)',
+	},
+	track: {
+		height: 8,
+		borderRadius: 4,
+	},
+	rail: {
+		height: 8,
+		borderRadius: 4,
+	},
 })(Slider);
 
 
 const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+	paper: {
+		marginTop: theme.spacing(8),
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+	},
+	avatar: {
+		margin: theme.spacing(1),
+		backgroundColor: theme.palette.secondary.main,
+	},
+	form: {
+		width: '100%', // Fix IE 11 issue.
+		marginTop: theme.spacing(3),
+	},
+	submit: {
+		margin: theme.spacing(3, 0, 2),
+	},
 }));
 
 export default function SignUp() {
 	const history = useHistory()
-  const classes = useStyles();
+	const classes = useStyles();
 
 	const [cookies, setCookie] = useCookies(['_session'])
 
@@ -148,8 +148,8 @@ export default function SignUp() {
 				bio
 			})
 			.then( res => {
-					setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
-				}
+				setCookie('_session', res.data, {maxAge: 180*86400, path:'/'})
+			}
 			)
 			.then(_=>{
 				history.push('/dashboard');
@@ -159,71 +159,71 @@ export default function SignUp() {
 
 	} 
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate>
+	return (
+		<Container component="main" maxWidth="xs">
+			<CssBaseline />
+			<div className={classes.paper}>
+				<Avatar className={classes.avatar}>
+					<LockOutlinedIcon />
+				</Avatar>
+				<Typography component="h1" variant="h5">
+					Sign up
+				</Typography>
+				<form className={classes.form} noValidate>
 					<Grid container spacing={2}>
 
-					{ step===1 &&
+						{ step===1 &&
 						<>
-						<Grid item xs={12} sm={6}>
-						<TextField
-							onChange={handleFirstName}
-							autoComplete="fname"
-							name="firstName"
-							variant="outlined"
-							required
-							fullWidth
-							id="firstName"
-							label="First Name"
-							autoFocus
-						/>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									onChange={handleFirstName}
+									autoComplete="fname"
+									name="firstName"
+									variant="outlined"
+									required
+									fullWidth
+									id="firstName"
+									label="First Name"
+									autoFocus
+								/>
 							</Grid>
 							<Grid item xs={12} sm={6}>
-						<TextField
-							onChange={handleLastName}
-							variant="outlined"
-							required
-							fullWidth
-							id="lastName"
-							label="Last Name"
-							name="lastName"
-							autoComplete="lname"
-						/>
+								<TextField
+									onChange={handleLastName}
+									variant="outlined"
+									required
+									fullWidth
+									id="lastName"
+									label="Last Name"
+									name="lastName"
+									autoComplete="lname"
+								/>
 							</Grid>
 							<Grid item xs={12}>
-						<TextField
-							onChange={handleEmail}
-							variant="outlined"
-							required
-							fullWidth
-							id="email"
-							label="Email Address"
-							name="email"
-							autoComplete="email"
-						/>
+								<TextField
+									onChange={handleEmail}
+									variant="outlined"
+									required
+									fullWidth
+									id="email"
+									label="Email Address"
+									name="email"
+									autoComplete="email"
+								/>
 							</Grid>
 							<Grid item xs={12}>
-							<TextField
-								onChange={handlePassword}
-								variant="outlined"
-								required
-								fullWidth
-								name="password"
-								label="Password"
-								type="password"
-								id="password"
-								autoComplete="current-password"
-							/>
-								</Grid>
+								<TextField
+									onChange={handlePassword}
+									variant="outlined"
+									required
+									fullWidth
+									name="password"
+									label="Password"
+									type="password"
+									id="password"
+									autoComplete="current-password"
+								/>
+							</Grid>
 							<Grid item xs={10}/>
 							<Grid item xs={2}>
 								<Button onClick={handleNext}>
@@ -231,147 +231,147 @@ export default function SignUp() {
 								</Button>
 							</Grid>
 						</>
-					}
+						}
 
 						{ step===2 &&
 							<>
 								<Grid item xs={12}>
-								<TextField
-									onChange={handleDob}
-									fullWidth
-									defaultValue='1969-04-20'
-									id="date"
-									label="Birthday"
-									type="date"
-								/>
+									<TextField
+										onChange={handleDob}
+										fullWidth
+										defaultValue='1969-04-20'
+										id="date"
+										label="Birthday"
+										type="date"
+									/>
 								</Grid>
 								<Grid item xs={12}>
 									<FormControl component="fieldset" className={classes.formControl}>
-									<FormLabel component="legend">Your Gender</FormLabel>
+										<FormLabel component="legend">Your Gender</FormLabel>
 										<RadioGroup aria-label="gender" row  name="gender1" value={gender} onChange={handleGender}>
-										<FormControlLabel value="female" control={<Radio />} label="Female" />
-										<FormControlLabel value="male" control={<Radio />} label="Male" />
-										<FormControlLabel value="non-binary" control={<Radio />} label="Non-binary" />
+											<FormControlLabel value="female" control={<Radio />} label="Female" />
+											<FormControlLabel value="male" control={<Radio />} label="Male" />
+											<FormControlLabel value="non-binary" control={<Radio />} label="Non-binary" />
 										</RadioGroup>
 									</FormControl>
 								</Grid>
-							<Grid item xs={2}>
-								<Button onClick={handlePrev}>
-									back
-								</Button>
-							</Grid>
-							<Grid item xs={8}/>
-							<Grid item xs={2}>
-								<Button onClick={handleNext}>
-									next
-								</Button>
-							</Grid>
+								<Grid item xs={2}>
+									<Button onClick={handlePrev}>
+										back
+									</Button>
+								</Grid>
+								<Grid item xs={8}/>
+								<Grid item xs={2}>
+									<Button onClick={handleNext}>
+										next
+									</Button>
+								</Grid>
 							</>
 						}
 						{step===3 &&
 							<>
 								<Grid item xs={12}>
-								<FormControl component="fieldset" className={classes.formControl}>
-									<FormLabel component="legend">What are you interested in?</FormLabel>
+									<FormControl component="fieldset" className={classes.formControl}>
+										<FormLabel component="legend">What are you interested in?</FormLabel>
 										<RadioGroup aria-label="gender" row  name="gender1" value={genderPref} onChange={handleGenderPref}>
-										<FormControlLabel value="female" control={<Radio />} label="Women" />
+											<FormControlLabel value="female" control={<Radio />} label="Women" />
 											<FormControlLabel value="male" control={<Radio />} label="Men" />
 											<FormControlLabel value="doesn't matter" control={<Radio />} label="It doesn't matter" />
 										</RadioGroup>
-								</FormControl>
+									</FormControl>
 								</Grid>
-							<Grid item xs={2}>
-								<Button onClick={handlePrev}>
-									back
-								</Button>
-							</Grid>
-							<Grid item xs={8}/>
-							<Grid item xs={2}>
-								<Button onClick={handleNext}>
-									next
-								</Button>
-							</Grid>
+								<Grid item xs={2}>
+									<Button onClick={handlePrev}>
+										back
+									</Button>
+								</Grid>
+								<Grid item xs={8}/>
+								<Grid item xs={2}>
+									<Button onClick={handleNext}>
+										next
+									</Button>
+								</Grid>
 							</>
 						}
 						{step===4 &&
 							<>
-							<Grid item xs={12}>
-								<Typography gutterBottom>What's your age preference?</Typography>
+								<Grid item xs={12}>
+									<Typography gutterBottom>What's your age preference?</Typography>
 									<PrettoSlider 
-									min={18}
+										min={18}
 										max={120}
 										valueLabelDisplay='auto'
 										defaultValue={18} 
 										onChange={handleAgePref} 
 										aria-labelledby="continuous-slider" 
 									/>
-							</Grid>
-							<Grid item xs={2}>
-								<Button onClick={handlePrev}>
-									back
-								</Button>
-							</Grid>
-							<Grid item xs={8}/>
-							<Grid item xs={2}>
-								<Button onClick={handleNext}>
-									next
-								</Button>
-							</Grid>
+								</Grid>
+								<Grid item xs={2}>
+									<Button onClick={handlePrev}>
+										back
+									</Button>
+								</Grid>
+								<Grid item xs={8}/>
+								<Grid item xs={2}>
+									<Button onClick={handleNext}>
+										next
+									</Button>
+								</Grid>
 							</>
 						}
 						{step===5 &&
 							<>
 								<Typography variant='h6'>Tell us about yourself</Typography>
-								
-									<TextField
-										onChange={handleBio}
-										multiline
-										rows={4}
-										name="firstName"
-										variant="outlined"
-										required
-										fullWidth
-										id="bio"
-										label="Bio"
-										autoFocus
-									/>
+
+								<TextField
+									onChange={handleBio}
+									multiline
+									rows={4}
+									name="firstName"
+									variant="outlined"
+									required
+									fullWidth
+									id="bio"
+									label="Bio"
+									autoFocus
+								/>
 
 								<Grid item xs={12}>
-								<Button
-									type="submit"
-									fullWidth
-									variant="contained"
-									color="primary"
-									onClick={handleSubmit}
-									className={classes.submit}
-								>
-									Sign Up
-								</Button>
+									<Button
+										type="submit"
+										fullWidth
+										variant="contained"
+										color="primary"
+										onClick={handleSubmit}
+										className={classes.submit}
+									>
+										Sign Up
+									</Button>
 								</Grid>
-							<Grid item xs={2}>
-								<Button onClick={handlePrev}>
-									back
-								</Button>
-							</Grid>
-							<Grid item xs={8}/>
-							<Grid item xs={2}>
-							</Grid>
+								<Grid item xs={2}>
+									<Button onClick={handlePrev}>
+										back
+									</Button>
+								</Grid>
+								<Grid item xs={8}/>
+								<Grid item xs={2}>
+								</Grid>
 							</>
 
 						}
-          </Grid>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
+					</Grid>
+					<Grid container justify="flex-end">
+						<Grid item>
+							<Link href="#" variant="body2">
+								Already have an account? Sign in
+							</Link>
+						</Grid>
+					</Grid>
+				</form>
+			</div>
+			<Box mt={5}>
+				<Copyright />
+			</Box>
+		</Container>
+	);
 }

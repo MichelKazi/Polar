@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {useCookies} from 'react-cookie'
 import { AppHeader } from '../layouts'
 import { Container, makeStyles, Grid, AppBar,
-				 Toolbar, Typography, CssBaseline, 
-				 Button, IconButton, Dialog,
-				 DialogActions, DialogContent,
-				 DialogTitle, DialogContentText
-				} from '@material-ui/core'
+	Toolbar, Typography, CssBaseline, 
+	Button, IconButton, Dialog,
+	DialogActions, DialogContent,
+	DialogTitle, DialogContentText
+} from '@material-ui/core'
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
 
@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 	profileGrid: {
 		height: '94.2vh',
 		backgroundColor: '#ccc',
+		margin: '0 auto'
 	}
 })
 
@@ -28,7 +29,7 @@ const Profile = props => {
 	useEffect(()=>{
 		axios.get(`/user/${user.id}`,
 			{headers: {'Authorization': `Bearer ${cookies._session}`}}
-	)
+		)
 			.then(res => {
 				setUser({...user, bios: res.data.bios})	
 			})
@@ -46,17 +47,15 @@ const Profile = props => {
 			<CssBaseline/>
 			<AppHeader/>
 			<Grid container
+				xs={10}
 				className={classes.profileGrid}
 				justify="center"
 			>
-				<p>
-					{user.bios.map(bio=>{
-						return bio.content
-					})}
-				
-				</p>
+				<div className={classes.avatarSection}>
+
+				</div>
 			</Grid>
-		
+
 		</div>
 	);
 };

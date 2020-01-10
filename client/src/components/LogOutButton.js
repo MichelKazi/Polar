@@ -30,18 +30,18 @@ const LogOutButton = props => {
 		console.log('Logging user out')
 		dispatch({type: 'setUser', payload: null})
 		console.log(user)
-		
+
 	} 
 
 	return (
-			<Button 
-				variant='contained'
-				color='secondary'
-				className={classes.logoutbutton}
-				onClick = {handleLogOut}
-			>
-				LOG OUT
-			</Button>
+		<Button 
+			variant='contained'
+			color='secondary'
+			className={classes.logoutbutton}
+			onClick = {handleLogOut}
+		>
+			LOG OUT
+		</Button>
 	);
 };
 
