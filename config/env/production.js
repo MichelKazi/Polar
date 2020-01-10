@@ -31,6 +31,11 @@ module.exports = {
   **************************************************************************/
   datastores: {
 
+    default: {
+      adapter: 'sails-postgresql',
+      url: 'postgresql://postgres:0223@localhost:5432/postgres',
+      ssl: true
+    },
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -46,33 +51,6 @@ module.exports = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
-      //--------------------------------------------------------------------------
-      //  /\   To avoid checking it in to version control, you might opt to set
-      //  ||   sensitive credentials like `url` using an environment variable.
-      //
-      //  For example:
-      //  ```
-      //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
-      //  ```
-      //--------------------------------------------------------------------------
-
-      /****************************************************************************
-      *                                                                           *
-      * More adapter-specific options                                             *
-      *                                                                           *
-      * > For example, for some hosted PostgreSQL providers (like Heroku), the    *
-      * > extra `ssl: true` option is mandatory and must be provided.             *
-      *                                                                           *
-      * More info:                                                                *
-      * https://sailsjs.com/config/datastores                                     *
-      *                                                                           *
-      ****************************************************************************/
-      // ssl: true,
-
-    },
 
   },
 
@@ -118,7 +96,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   blueprints: {
-    shortcuts: false,
+    shortcuts: true,
   },
 
 
@@ -148,9 +126,11 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+			 allowOrigins: [
+				 'http://polardating.herokuapp.com/',
+				 'http://localhost:3000',
+				 'https://example.com',
+			 ]
     },
 
   },
@@ -221,7 +201,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cookie: {
-      // secure: true,
+			 secure: true,
       maxAge: 24 * 60 * 60 * 1000,  // 24 hours
     },
 
@@ -250,10 +230,11 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    // onlyAllowOrigins: [
-    //   'https://example.com',
-    //   'https://staging.example.com',
-    // ],
+		 onlyAllowOrigins: [
+			 'https://example.com',
+			 'http://polardating.herokuapp.com/',
+			 'https://staging.example.com',
+		 ],
 
 
     /***************************************************************************
