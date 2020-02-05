@@ -100,17 +100,15 @@ module.exports = {
     sails.log(`Bios: ${sails.models.Bios}`);
     sails.log(`bios: ${sails.models.bios}`);
 
-    if (inputs.bio){
-      const firstBio = await sails.models.bios.create({
-        content: inputs.bio
-      })
-				.fetch();
-      sails.log(`Bio ${firstBio.id} created for user ${newUserRecord.id}`);
+    const firstBio = await sails.models.bios.create({
+      content: inputs.bio
+    })
+			.fetch();
 
-      await User.addToCollection(await newUserRecord.id, 'bios')
-				.members([await firstBio.id]);
+    sails.log(`Bio ${firstBio.id} created for user ${newUserRecord.id}`);
 
-    }
+    await User.addToCollection(await newUserRecord.id, 'bios')
+		.members([await firstBio.id]);
 
 
 		 //create a JWT token for the newly minted user:w

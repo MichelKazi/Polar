@@ -22,7 +22,7 @@ module.exports = {
         // location: { compare user's location to profilesToRender location somehow }
       },
       sort: 'updatedAt DESC'
-    }).populate('bios');
+    });
 
     const profilesToSend = potentialMatches.map(profile => {
       return R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], profile);

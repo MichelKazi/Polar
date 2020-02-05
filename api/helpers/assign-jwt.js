@@ -27,7 +27,7 @@ module.exports = {
   fn: async function (inputs, exits) {
     if (!inputs) {return exits.invalid();}
 
-    const userRecord = await User.findOne({ id: inputs.userId }).populate('bios');
+    const userRecord = await User.findOne({ id: inputs.userId });
     const user = R.omit(['password', 'email', 'createdAt', 'updatedAt', 'dob'], userRecord);
     user.sub = user.id;
     const token = jwt.sign(await user, process.env.JWT_KEY);

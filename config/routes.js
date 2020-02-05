@@ -31,14 +31,14 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /api/v1/entrance/login':		{ action: 'entrance/login' },
+  'PUT /api/v1/entrance/login':		{ action: 'entrance/login' },
   'POST /api/v1/entrance/signup':	{ action: 'entrance/signup' },
 
 
   '/api/v1/account/logout':				{ action: 'account/logout'  },
-  'POST /api/v1/account/update-bio': { action: 'account/update-bio' },
+  'PUT /api/v1/account/update-bio': { action: 'account/update-bio' },
   'POST /api/v1/account/add-image': { action: 'account/add-image' },
 
   'GET /api/v1/dashboard':				{ action: 'dashboard/show-profiles' },
-  'POST /api/v1/dashboard/like-user': {action: 'dashboard/like-user'}
+  'PUT /api/v1/dashboard/like-user': {action: 'dashboard/like-user'}
 };
