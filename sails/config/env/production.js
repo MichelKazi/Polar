@@ -31,11 +31,11 @@ module.exports = {
   **************************************************************************/
   datastores: {
 
-    default: {
-      adapter: 'sails-postgresql',
-      url: process.env.DATABASE_URL,
-      ssl: true
-    },
+		default: {
+			adapter: 'sails-postgresql',
+			url: process.env.DATABASE_URL,
+			ssl: true
+		},
     /***************************************************************************
     *                                                                          *
     * Configure your default production database.                              *
@@ -53,22 +53,22 @@ module.exports = {
     ***************************************************************************/
 
     //default: {
-    //adapter: 'sails-postgresql',
-    //port: 5432,
-    //ssl: true
-    // adapter: 'sails-mysql',
-    // url: 'mysql://user:password@host:port/database',
-    //--------------------------------------------------------------------------
-    //  /\   To avoid checking it in to version control, you might opt to set
-    //  ||   sensitive credentials like `url` using an environment variable.
-    //
-    //  For example:
-    //  ```
-    //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
-    //  ```
-    //--------------------------------------------------------------------------
+      //adapter: 'sails-postgresql',
+      //port: 5432,
+      //ssl: true
+      // adapter: 'sails-mysql',
+      // url: 'mysql://user:password@host:port/database',
+      //--------------------------------------------------------------------------
+      //  /\   To avoid checking it in to version control, you might opt to set
+      //  ||   sensitive credentials like `url` using an environment variable.
+      //
+      //  For example:
+      //  ```
+      //  sails_datastores__default__url=mysql://admin:myc00lpAssw2D@db.example.com:3306/my_prod_db
+      //  ```
+      //--------------------------------------------------------------------------
 
-    /****************************************************************************
+      /****************************************************************************
       *                                                                           *
       * More adapter-specific options                                             *
       *                                                                           *
@@ -79,7 +79,7 @@ module.exports = {
       * https://sailsjs.com/config/datastores                                     *
       *                                                                           *
       ****************************************************************************/
-    // ssl: true,
+      // ssl: true,
 
     //},
   },

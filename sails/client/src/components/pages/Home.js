@@ -69,7 +69,6 @@ const Home = props => {
 								</Typography>
 							</Button>
 						</Grid>
-						<Grid item xs/>
 						<Grid item xs={2}
 							alignItems='center'
 							alignContent='center'

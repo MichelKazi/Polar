@@ -5,7 +5,6 @@ import { useCookies } from 'react-cookie'
 import history from '../history'
 import LogOutButton from '../LogOutButton.js'
 import AppHeader from '../layouts/AppHeader.js'
-import LikeButton from '../LikeButton.js'
 const randomColor = require('randomcolor')
 const axios = require('axios')
 const jwt = require('jsonwebtoken')
@@ -76,7 +75,6 @@ const Dashboard = props => {
 						<br/>
 						<div className={classes.photo}>
 							<img className={classes.photo}src={profile.image1} width={500} alt=""/>
-							<LikeButton user={profile} className={classes.like}/>
 							<Button className={classes.dislike}>I dislike this person</Button>
 							<Button className={classes.like}>I like this person</Button>
 

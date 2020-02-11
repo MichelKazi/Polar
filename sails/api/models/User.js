@@ -1,6 +1,7 @@
 // api/models/User.js
 const dateFns = require('date-fns');
 
+
 module.exports = {
   attributes: {
     email: {
@@ -35,8 +36,7 @@ module.exports = {
     image1:{
       // required: true,
       type: 'string',
-      isURL: true,
-      defaultsTo: 'https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg',
+      isURL: true
     },
     gender:{
       type: 'string',
