@@ -47,17 +47,7 @@ func (v UsersResource) List(c buffalo.Context) error {
 		return err
 	}
 
-	return responder.Wants("html", func(c buffalo.Context) error {
-		// Add the paginator to the context so it can be used in the template.
-		c.Set("pagination", q.Paginator)
-
-		c.Set("users", users)
-		return c.Render(http.StatusOK, r.HTML("/users/index.plush.html"))
-	}).Wants("json", func(c buffalo.Context) error {
-		return c.Render(200, r.JSON(users))
-	}).Wants("xml", func(c buffalo.Context) error {
-		return c.Render(200, r.XML(users))
-	}).Respond(c)
+	return c.Render(200, r.JSON(users))
 }
 
 // Show gets the data for one User. This function is mapped to
