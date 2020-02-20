@@ -72,14 +72,15 @@ func (v UsersResource) Create(c buffalo.Context) error {
 	// Allocate an empty User
 	user := &models.User{}
 
-	// Solicit inputs
+	req := c.Request()
+	fmt.Println(req.FormValue("name"))
 
-	// Bind user to response inputs
+	user.Name = req.FormValue("name")
 
 	// Bind user to the html form elements
-	if err := c.Bind(user); err != nil {
-		return err
-	}
+	//if err := c.Bind(user); err != nil {
+	//return err
+	//}
 
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)
@@ -94,33 +95,14 @@ func (v UsersResource) Create(c buffalo.Context) error {
 	}
 
 	if verrs.HasAny() {
-		return responder.Wants("html", func(c buffalo.Context) error {
-			// Make the errors available inside the html template
-			c.Set("errors", verrs)
-
-			// Render again the new.html template that the user can
-			// correct the input.
-			c.Set("user", user)
-
-			return c.Render(http.StatusUnprocessableEntity, r.HTML("/users/new.plush.html"))
-		}).Wants("json", func(c buffalo.Context) error {
-			return c.Render(http.StatusUnprocessableEntity, r.JSON(verrs))
-		}).Wants("xml", func(c buffalo.Context) error {
-			return c.Render(http.StatusUnprocessableEntity, r.XML(verrs))
-		}).Respond(c)
+		return c.Render(http.StatusUnprocessableEntity, r.JSON(verrs))
 	}
 
-	return responder.Wants("html", func(c buffalo.Context) error {
-		// If there are no errors set a success message
-		c.Flash().Add("success", "user.created.success")
+	// If there are no errors set a success message
+	c.Flash().Add("success", "user.created.success")
 
-		// and redirect to the show page
-		return c.Redirect(http.StatusSeeOther, "/users/%v", user.ID)
-	}).Wants("json", func(c buffalo.Context) error {
-		return c.Render(http.StatusCreated, r.JSON(user))
-	}).Wants("xml", func(c buffalo.Context) error {
-		return c.Render(http.StatusCreated, r.XML(user))
-	}).Respond(c)
+	// and redirect to the show page
+	return c.Render(http.StatusCreated, r.JSON(user))
 }
 
 // Update changes a User in the DB. This function is mapped to
