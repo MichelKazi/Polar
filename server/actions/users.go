@@ -38,15 +38,12 @@ func (v UsersResource) List(c buffalo.Context) error {
 
 	users := &models.Users{}
 
-	// Paginate results. Params "page" and "per_page" control pagination.
-	// Default values are "page=1" and "per_page=20".
-	q := tx.PaginateFromParams(c.Params())
-
 	// Retrieve all Users from the DB
-	if err := q.All(users); err != nil {
+	if err := tx.All(users); err != nil {
 		return err
 	}
 
+	// Send a json response
 	return c.Render(200, r.JSON(users))
 }
 
@@ -66,16 +63,7 @@ func (v UsersResource) Show(c buffalo.Context) error {
 	if err := tx.Find(user, c.Param("user_id")); err != nil {
 		return c.Error(http.StatusNotFound, err)
 	}
-
-	return responder.Wants("html", func(c buffalo.Context) error {
-		c.Set("user", user)
-
-		return c.Render(http.StatusOK, r.HTML("/users/show.plush.html"))
-	}).Wants("json", func(c buffalo.Context) error {
-		return c.Render(200, r.JSON(user))
-	}).Wants("xml", func(c buffalo.Context) error {
-		return c.Render(200, r.XML(user))
-	}).Respond(c)
+	return c.Render(200, r.JSON(user))
 }
 
 // Create adds a User to the DB. This function is mapped to the
@@ -83,6 +71,10 @@ func (v UsersResource) Show(c buffalo.Context) error {
 func (v UsersResource) Create(c buffalo.Context) error {
 	// Allocate an empty User
 	user := &models.User{}
+
+	// Solicit inputs
+
+	// Bind user to response inputs
 
 	// Bind user to the html form elements
 	if err := c.Bind(user); err != nil {
