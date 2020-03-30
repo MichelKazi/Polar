@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"server/models"
 
+	"github.com/gobuffalo/buffalo/binding"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/x/responder"
@@ -78,9 +80,13 @@ func (v UsersResource) Create(c buffalo.Context) error {
 	user.Name = req.FormValue("name")
 
 	// Bind user to the html form elements
-	//if err := c.Bind(user); err != nil {
+	//if err := c.bind(user); err != nil {
 	//return err
 	//}
+
+	if err := binding.Exec(c.Request(), user); err != nil {
+		return err
+	}
 
 	// Get the DB connection from the context
 	tx, ok := c.Value("tx").(*pop.Connection)

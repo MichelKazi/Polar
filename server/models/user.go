@@ -14,15 +14,15 @@ import (
 // User is used by pop to map your .model.Name.Proper.Pluralize.Underscore database table to your go code.
 type User struct {
 	ID               uuid.UUID    `json:"id" db:"id"`
-	Name             string       `json:"name" db:"name"`
-	Email            string       `json:"email" db:"email"`
-	Bio              nulls.String `json:"bio" db:"bio"`
-	Age              int          `json:"age" db:"age"`
-	Avatar           string       `json:"avatar" db:"avatar"`
-	Gender           string       `json:"gender" db:"gender"`
-	GenderPreference string       `json:"gender_preference" db:"gender_preference"`
-	AgePreference    int          `json:"age_preference" db:"age_preference"`
-	Location         string       `json:"location" db:"location"`
+	Name             string       `json:"name" db:"name" form:"name"`
+	Email            string       `json:"email" db:"email" form:"email"`
+	Bio              nulls.String `json:"bio" db:"bio" form:"bio"`
+	Age              int          `json:"age" db:"age" form:"age"`
+	Avatar           string       `json:"avatar" db:"avatar" form:"avatar"`
+	Gender           string       `json:"gender" db:"gender" form:"gender"`
+	GenderPreference string       `json:"gender_preference" db:"gender_preference" form:"gender_preference"`
+	AgePreference    int          `json:"age_preference" db:"age_preference" form:"age_preference"`
+	Location         string       `json:"location" db:"location" form:"location"`
 	CreatedAt        time.Time    `json:"created_at" db:"created_at"`
 	UpdatedAt        time.Time    `json:"updated_at" db:"updated_at"`
 }
